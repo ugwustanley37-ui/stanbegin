@@ -1,0 +1,792 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Stanley Ugwu Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Stanley Ugwu, online course creator and LMS expert. Projects on Kajabi, Teachable, Thinkific, LearnWorlds, Moodle, Skool and more, with live client sites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: full-width multi-page site (Home, About, Projects, Project detail, Contact) on hash routes.
+   Deep green dominates, orange is the energy colour, white is used for reading surfaces. */
+:root{
+  --g9:#0A2A1B; --g8:#0F3D27; --g7:#145234; --g6:#1C6B44; --mint:#DCEBE1; --sage:#EEF4EF;
+  --o5:#F28A12; --o6:#DB7409; --peach:#FFE6C7;
+  --ink:#0F1F17; --muted:#56685E; --line:#D7E2DA; --white:#FFFFFF;
+  --f-d:"Syne", "Arial Black", system-ui, sans-serif;
+  --f-b:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gx:max(20px, min(4.5vw, 72px));
+  --ease:cubic-bezier(.19,1,.22,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;overflow-x:clip}
+body{overflow-x:clip}
+body{background:var(--g9);color:var(--ink);font-family:var(--f-b);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:90;background:var(--g9)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--o5);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--f-d);font-weight:700;line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
+p{margin:0}
+.gx{padding-left:max(var(--gx), env(safe-area-inset-left, 0px));padding-right:max(var(--gx), env(safe-area-inset-right, 0px))}
+.label{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.label::before{content:"";width:28px;height:2px;background:currentColor}
+.o{color:var(--o5)}
+main{background:var(--white)}
+
+/* ---------- rolling text hover ---------- */
+.roll{display:inline-flex;overflow:hidden;vertical-align:top;line-height:1.2;height:1.2em}
+.roll .rw{display:flex;flex-direction:column;transition:transform .55s var(--ease)}
+.roll .rw span{display:block;height:1.2em;white-space:pre}
+a:hover .roll .rw, button:hover .roll .rw, .roll-host:hover .roll .rw{transform:translateY(-50%)}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 28px;border-radius:999px;font-weight:800;font-size:15px;letter-spacing:.02em;border:0;cursor:pointer;overflow:hidden;isolation:isolate;white-space:nowrap;transition:color .45s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;transform:translateY(101%);transition:transform .55s var(--ease)}
+.btn:hover::before{transform:none}
+.btn .ic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;transition:transform .5s var(--ease)}
+.btn:hover .ic{transform:rotate(-45deg)}
+.b-or{background:var(--o5);color:var(--g9)}
+.b-or::before{background:var(--white)}
+.b-or .ic{background:var(--g9);color:var(--o5)}
+.b-gr{background:var(--g8);color:#fff}
+.b-gr::before{background:var(--o5)}
+.b-gr:hover{color:var(--g9)}
+.b-gr .ic{background:var(--o5);color:var(--g9)}
+.b-ln{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgb(255 255 255/.4)}
+.b-ln::before{background:#fff}
+.b-ln:hover{color:var(--g9)}
+.b-ln.dark{color:var(--g8);box-shadow:inset 0 0 0 1.5px var(--line)}
+.b-ln.dark::before{background:var(--g8)}
+.b-ln.dark:hover{color:#fff}
+
+/* ---------- cursor ---------- */
+.cur,.cur-dot{position:fixed;left:0;top:0;pointer-events:none;z-index:200;border-radius:50%;display:none;opacity:0;transition:opacity .4s}
+body.moved .cur,body.moved .cur-dot{opacity:1}
+@media (pointer:fine){.cur,.cur-dot{display:block}}
+.cur-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--o5)}
+.cur{width:40px;height:40px;margin:-20px 0 0 -20px;border:1.5px solid var(--o5);display:none;place-items:center;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),background .4s,border-color .4s}
+@media (pointer:fine){.cur{display:grid}}
+.cur span{font-size:13px;font-weight:800;color:var(--g9);opacity:0;transition:opacity .3s;letter-spacing:.04em}
+.cur.big{width:104px;height:104px;margin:-52px 0 0 -52px;background:var(--o5);border-color:var(--o5)}
+.cur.big span{opacity:1}
+.cur.hov{width:60px;height:60px;margin:-30px 0 0 -30px;background:rgb(242 138 18/.15)}
+
+/* ---------- preloader & transitions ---------- */
+.loader{position:fixed;inset:0;z-index:150;background:var(--g9);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--gx);transition:transform 1s var(--ease)}
+.loader .ln{font-family:var(--f-d);font-size:clamp(64px,14vw,220px);line-height:.9;font-weight:800;color:var(--o5);font-variant-numeric:tabular-nums}
+.loader .nm{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-bottom:12px;opacity:.7}
+.loader.done{transform:translateY(-100%)}
+.wipe{position:fixed;inset:0;z-index:140;pointer-events:none;display:grid;grid-template-columns:repeat(5,1fr)}
+.wipe i{background:var(--o5);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease)}
+.wipe i:nth-child(2){transition-delay:.04s;background:var(--g7)}.wipe i:nth-child(3){transition-delay:.08s}.wipe i:nth-child(4){transition-delay:.12s;background:var(--g7)}.wipe i:nth-child(5){transition-delay:.16s}
+.wipe.in i{transform:scaleY(1)}
+.wipe.out i{transform-origin:top;transform:scaleY(0)}
+
+/* ---------- header ---------- */
+.hd{position:fixed;left:0;right:0;top:env(safe-area-inset-top, 0px);z-index:80;color:#fff;transition:background .4s, transform .5s var(--ease)}
+.hd.solid{background:rgb(10 42 27/.88);backdrop-filter:blur(14px)}
+.hd.hide{transform:translateY(-110%)}
+.hd-in{display:flex;align-items:center;gap:24px;height:84px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--f-d);font-weight:800;font-size:20px;letter-spacing:-.01em}
+.logo .mk{width:40px;height:40px;border-radius:50%;background:var(--o5);color:var(--g9);display:grid;place-items:center;font-size:18px;transition:transform .6s var(--ease)}
+.logo:hover .mk{transform:rotate(360deg)}
+.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
+.nav a{font-weight:700;font-size:15px;padding:10px 16px;border-radius:99px;position:relative}
+.nav a.on::after{content:"";position:absolute;left:50%;bottom:2px;width:6px;height:6px;border-radius:50%;background:var(--o5);transform:translateX(-50%)}
+.hd .btn{padding:14px 22px}
+.burger{display:none;margin-left:auto;width:52px;height:52px;border-radius:50%;background:var(--o5);border:0;cursor:pointer;position:relative}
+.burger i{position:absolute;left:16px;right:16px;height:2px;background:var(--g9);transition:.4s var(--ease)}
+.burger i:nth-child(1){top:21px}.burger i:nth-child(2){top:29px}
+.menu-open .burger i:nth-child(1){top:25px;transform:rotate(45deg)}
+.menu-open .burger i:nth-child(2){top:25px;transform:rotate(-45deg)}
+@media (max-width:900px){.nav,.hd .btn{display:none}.burger{display:block}}
+.mmenu{position:fixed;inset:0;z-index:79;background:var(--g8);color:#fff;padding:120px var(--gx) 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:circle(0 at calc(100% - 50px) 50px);transition:clip-path .8s var(--ease);visibility:hidden}
+.menu-open .mmenu{clip-path:circle(150% at calc(100% - 50px) 50px);visibility:visible}
+.mmenu nav{display:flex;flex-direction:column;gap:6px}
+.mmenu nav a{font-family:var(--f-d);font-size:clamp(44px,12vw,80px);font-weight:800;line-height:1.05;transform:translateY(40px);opacity:0;transition:.7s var(--ease)}
+.menu-open .mmenu nav a{transform:none;opacity:1}
+.menu-open .mmenu nav a:nth-child(2){transition-delay:.06s}.menu-open .mmenu nav a:nth-child(3){transition-delay:.12s}.menu-open .mmenu nav a:nth-child(4){transition-delay:.18s}
+.mmenu nav a:hover{color:var(--o5)}
+.mmenu .soc{display:flex;gap:24px;font-weight:700}
+
+/* ---------- page heroes (green) ---------- */
+.phero{background:var(--g9);color:#fff;padding-block:170px 80px;position:relative;overflow:hidden}
+.phero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgb(255 255 255/.045) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/.045) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(180deg,#000 30%,transparent)}
+.phero h1{font-size:clamp(56px,11vw,190px);font-weight:800;line-height:.9;letter-spacing:-.04em;position:relative}
+.phero .sub{font-size:clamp(17px,1.6vw,21px);max-width:38em;opacity:.8;margin-top:28px;position:relative}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.split .w > span{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--ease)}
+.split.go .w > span{transform:none}
+
+/* ---------- home hero ---------- */
+.hero{background:var(--g9);color:#fff;position:relative;overflow:hidden;padding-block:130px 0}
+.hero .glow{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle, rgb(242 138 18/.35), transparent 60%);left:50%;top:30%;transform:translate(-50%,-50%);pointer-events:none;transition:transform 1.2s var(--ease)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;position:relative;z-index:2}
+.hero-top .role{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:13px}
+.hero-top .role b{color:var(--o5)}
+.hero-top .plats{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;text-align:right;max-width:420px}
+.hero-stage{position:relative;margin-top:8px;height:clamp(460px,56vw,800px)}
+.bigname{font-family:var(--f-d);font-weight:800;font-size:clamp(70px,17.5vw,330px);line-height:.8;letter-spacing:-.055em;text-align:center;width:100%;position:relative;z-index:1;color:var(--o5);white-space:nowrap;user-select:none}
+.bigname .ch{display:inline-block;transform:translateY(105%);transition:transform 1.2s var(--ease)}
+.hero.go .bigname .ch{transform:none}
+.bigname-wrap{position:absolute;left:0;right:0;bottom:16%;overflow:hidden;padding-top:.02em}
+.hero-photo{position:absolute;left:50%;bottom:0;height:100%;transform:translateX(-50%);z-index:2;pointer-events:none;display:flex;align-items:flex-end}
+.hero-photo::after{content:"";position:absolute;left:-40%;right:-40%;bottom:0;height:22%;background:linear-gradient(transparent,var(--g9));}
+.hero-photo img{height:100%;width:auto;max-width:none;filter:drop-shadow(0 30px 40px rgb(0 0 0/.35));transform:translateY(40px);opacity:0;transition:transform 1.4s .35s var(--ease),opacity 1s .35s}
+.hero.go .hero-photo img{transform:none;opacity:1}
+.badge{position:absolute;right:max(var(--gx), 6%);top:8%;width:150px;height:150px;z-index:3;display:grid;place-items:center}
+.badge svg{position:absolute;inset:0;animation:spin 16s linear infinite}
+.badge text{font-family:var(--f-b);font-weight:800;font-size:11.5px;letter-spacing:3px;fill:#fff;text-transform:uppercase}
+.badge .core{width:64px;height:64px;border-radius:50%;background:var(--o5);display:grid;place-items:center;color:var(--g9);font-size:26px;transition:transform .5s var(--ease)}
+.badge:hover .core{transform:scale(1.15) rotate(-45deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-bottom{position:relative;z-index:3;border-top:1px solid rgb(255 255 255/.12);padding-block:36px 48px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.hero-bottom > *{min-width:0}
+.hero-bottom p{font-size:clamp(17px,1.5vw,21px);max-width:30em;opacity:.9}
+.hero-bottom .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.scrollcue{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.scrollcue i{width:1.5px;height:56px;background:linear-gradient(var(--o5),transparent);animation:cue 2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:820px){.bigname{white-space:normal;font-size:clamp(44px,13.6vw,130px);line-height:.86}.bigname .wd{display:block;white-space:nowrap;width:max-content;margin:0 auto}.hero-stage{height:clamp(440px,128vw,600px)}.bigname-wrap{bottom:auto;top:0}.hero-top .plats{display:none}.badge{display:none}.badge{width:110px;height:110px;top:2%}.badge text{font-size:9px}.badge .core{width:48px;height:48px;font-size:20px}.hero-bottom{grid-template-columns:1fr}.scrollcue{display:none}.hero-top .plats{text-align:left}}
+
+/* ---------- marquee ---------- */
+.mq{background:var(--o5);color:var(--g9);overflow:hidden;padding-block:26px;transform:rotate(-2deg) scale(1.04);margin-block:-10px;position:relative;z-index:4}
+.mq.alt{background:var(--g8);color:#fff;transform:rotate(1.5deg) scale(1.04);margin-top:-30px;z-index:3}
+.mq-t{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq.alt .mq-t{animation-direction:reverse;animation-duration:44s}
+.mq-t span{font-family:var(--f-d);font-weight:800;font-size:clamp(28px,4vw,56px);text-transform:uppercase;display:flex;align-items:center;gap:40px;padding-right:40px;white-space:nowrap}
+.mq-t span::after{content:"✦";font-size:.6em;color:var(--g9)}
+.mq.alt .mq-t span::after{color:var(--o5)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq-wrap{background:var(--g9);padding-block:30px 40px;overflow:hidden;overflow:clip;contain:paint;max-width:100%}
+
+/* ---------- sections ---------- */
+.sec{padding-block:120px}
+.sec.sage{background:var(--sage)}
+.sec.dark{background:var(--g9);color:#fff}
+.sec.green{background:var(--g8);color:#fff}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap;margin-bottom:56px}
+.sh > div{min-width:0}
+.sh h2{font-size:clamp(44px,7vw,112px);font-weight:800;letter-spacing:-.04em;margin-top:18px}
+.sh .label{color:var(--g6)}
+.dark .sh .label,.green .sh .label{color:var(--o5)}
+.textlink{font-weight:800;font-size:15px;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;padding-bottom:6px;border-bottom:2px solid currentColor}
+.textlink .arr{transition:transform .5s var(--ease)}
+.textlink:hover .arr{transform:translateX(6px)}
+
+/* reveal */
+.rv{transition:opacity 1s var(--ease), transform 1s var(--ease)}
+.rv.pre{opacity:0;transform:translateY(48px)}
+.clip{overflow:hidden}
+.clip img{transition:transform 1.4s var(--ease), clip-path 1.4s var(--ease)}
+.clip.pre img{clip-path:inset(100% 0 0 0);transform:scale(1.25)}
+
+/* ---------- project cards ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 28px}
+.pgrid.sel{grid-template-columns:repeat(2,1fr);gap:72px 40px}
+.pgrid.sel .pc:nth-child(even){margin-top:120px}
+.pc{display:flex;flex-direction:column;gap:20px;cursor:pointer}
+.pc .im{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--mint)}
+.pgrid:not(.sel) .pc .im{aspect-ratio:16/11}
+.pc .im img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 1.2s var(--ease)}
+.pc:hover .im img{transform:scale(1.07)}
+.pc .im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgb(10 42 27/.55));opacity:0;transition:opacity .6s}
+.pc:hover .im::after{opacity:1}
+.pc .tag{position:absolute;left:18px;top:18px;z-index:2;background:var(--white);color:var(--g8);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:99px}
+.pc .live{position:absolute;right:18px;top:18px;z-index:2;background:var(--o5);color:var(--g9);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:99px;display:flex;align-items:center;gap:6px}
+.pc .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--g9);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.pc .go{position:absolute;right:18px;bottom:18px;z-index:2;width:58px;height:58px;border-radius:50%;background:var(--o5);color:var(--g9);display:grid;place-items:center;font-size:22px;transform:scale(0) rotate(-90deg);transition:transform .6s var(--ease)}
+.pc:hover .go{transform:scale(1) rotate(-45deg)}
+@media (pointer:fine){.pc .go{display:none}}
+.pc .meta{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.pc .meta > div{min-width:0}
+.pc h3{font-size:clamp(22px,2vw,30px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase}
+.pgrid:not(.sel) .pc h3{font-size:clamp(19px,1.5vw,23px)}
+.pc p{color:var(--muted);font-size:15px;margin-top:8px}
+.pc .yr{font-weight:800;font-size:14px;color:var(--g6);white-space:nowrap}
+@media (max-width:1100px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.pgrid,.pgrid.sel{grid-template-columns:1fr}.pgrid.sel .pc:nth-child(even){margin-top:0}}
+
+/* ---------- about preview / about page ---------- */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,120px);align-items:center}
+.ab > *{min-width:0}
+.ab h2{font-size:clamp(48px,7vw,120px);font-weight:800;letter-spacing:-.04em}
+.ab .txt p{font-size:clamp(17px,1.4vw,20px);color:var(--muted);margin-top:22px;max-width:34em}
+.ab .txt p strong{color:var(--ink)}
+.ab-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/4.6;background:var(--g8)}
+.ab-photo .sun{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFB04A,var(--o5) 55%,var(--o6));left:15%;top:16%;transition:transform 1.4s var(--ease)}
+.ab-photo .ring{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;border:2px solid rgb(255 255 255/.25);right:-8%;top:-6%}
+.ab-photo img{position:absolute;left:50%;bottom:0;width:88%;transform:translateX(-50%);transition:transform 1.4s var(--ease)}
+.ab-photo:hover img{transform:translateX(-50%) scale(1.04)}
+.ab-photo:hover .sun{transform:scale(1.08) translate(-3%,-3%)}
+.stats{display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:48px;border-top:1.5px solid var(--line)}
+.stats div{padding:26px 20px 0 0}
+.stats b{font-family:var(--f-d);font-size:clamp(34px,4vw,64px);font-weight:800;color:var(--g8);line-height:1;display:block;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats b em{color:var(--o5);font-style:normal}
+.stats span{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:900px){.ab{grid-template-columns:1fr}.ab-photo{max-width:520px}}
+
+/* ---------- services list with hover preview ---------- */
+.svc{border-top:1px solid rgb(255 255 255/.15)}
+.svc a{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:24px;padding:30px 0;border-bottom:1px solid rgb(255 255 255/.15);position:relative;overflow:hidden;isolation:isolate}
+.svc a::before{content:"";position:absolute;inset:0;background:var(--o5);z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .6s var(--ease)}
+.svc a:hover::before{transform:scaleY(1)}
+.svc a:hover{color:var(--g9)}
+.svc .n{font-weight:800;font-size:14px;opacity:.6;padding-left:12px}
+.svc .t{font-family:var(--f-d);font-weight:800;font-size:clamp(34px,6vw,96px);line-height:1;letter-spacing:-.035em;text-transform:uppercase;transition:transform .6s var(--ease)}
+.svc a:hover .t{transform:translateX(24px)}
+.svc .c{font-weight:800;font-size:15px;padding-right:12px;display:flex;align-items:center;gap:14px;white-space:nowrap}
+.svc .c i{font-style:normal;width:46px;height:46px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;transition:transform .6s var(--ease)}
+.svc a:hover .c i{transform:rotate(-45deg)}
+.preview{position:fixed;left:0;top:0;width:340px;aspect-ratio:4/3;border-radius:18px;overflow:hidden;pointer-events:none;z-index:60;opacity:0;transform:scale(.6);transition:opacity .35s, transform .5s var(--ease);box-shadow:0 30px 60px -20px rgb(0 0 0/.5)}
+.preview.on{opacity:1;transform:scale(1)}
+.preview img{width:100%;height:100%;object-fit:cover;object-position:top}
+@media not (pointer:fine){.preview{display:none}}
+@media (max-width:720px){.svc a{grid-template-columns:1fr auto}.svc .n{display:none}.preview{display:none}}
+
+/* ---------- testimonials ---------- */
+.tsec{background:var(--peach);padding-block:120px;position:relative;overflow:hidden}
+.tq{max-width:1200px}
+.tq .mark{font-family:var(--f-d);font-size:180px;line-height:1;color:var(--o5);height:110px;margin-top:20px;overflow:hidden}
+.tslide{display:none}
+.tslide.on{display:block;animation:tin .9s var(--ease)}
+@keyframes tin{from{opacity:0;transform:translateY(30px)}}
+.tslide blockquote{margin:0;font-family:var(--f-d);font-weight:700;font-size:clamp(28px,3.6vw,56px);line-height:1.12;letter-spacing:-.025em;color:var(--g9)}
+.tslide .who{margin-top:32px;font-weight:800;color:var(--g8)}
+.tslide .who span{display:block;font-weight:600;color:var(--muted)}
+.tctl{display:flex;align-items:center;gap:20px;margin-top:48px}
+.tctl button{width:62px;height:62px;border-radius:50%;border:1.5px solid var(--g8);background:transparent;cursor:pointer;font-size:22px;color:var(--g8);transition:.4s var(--ease)}
+.tctl button:hover{background:var(--g8);color:#fff}
+.tbar{flex:1;max-width:320px;height:3px;background:rgb(15 61 39/.15);border-radius:3px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--o5);width:0}
+.tcount{font-weight:800;font-variant-numeric:tabular-nums;color:var(--g8)}
+
+/* ---------- footer ---------- */
+.ft{background:var(--g9);color:#fff;padding-block:110px 34px;overflow:hidden;position:relative}
+.ft .pre{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:var(--o5);display:block;margin-bottom:24px}
+.git{display:block;font-family:var(--f-d);font-weight:800;font-size:clamp(60px,14vw,250px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase;position:relative}
+.git .l1,.git .l2{display:block;transition:transform .9s var(--ease), color .6s}
+.git .l2{color:var(--o5)}
+.git:hover .l1{transform:translateX(3vw)}
+.git:hover .l2{transform:translateX(-3vw);color:#fff}
+.git .dot{display:inline-grid;place-items:center;width:.62em;height:.62em;border-radius:50%;background:var(--o5);color:var(--g9);font-size:.4em;vertical-align:middle;margin-left:.15em;transition:transform .8s var(--ease)}
+.git:hover .dot{transform:rotate(-45deg) scale(1.1);background:#fff}
+.ft-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-top:90px;padding-top:40px;border-top:1px solid rgb(255 255 255/.15)}
+.ft-row > div{min-width:0}
+.ft-row h4{font-family:var(--f-b);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:16px}
+.ft-row a{display:block;font-weight:700;font-size:17px;margin-bottom:8px;width:max-content}
+.ft-row a:hover{color:var(--o5)}
+.ft-row p{opacity:.75;font-size:15px;max-width:26em}
+.ft-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:60px;font-size:14px;opacity:.6}
+@media (max-width:900px){.ft-row{grid-template-columns:1fr 1fr}}
+
+/* ---------- projects page filter ---------- */
+.fbar{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 84px);z-index:20;background:rgb(255 255 255/.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-block:16px}
+.ftabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;position:relative;padding:4px}
+.ftabs::-webkit-scrollbar{display:none}
+.ftabs .ind{position:absolute;top:4px;height:calc(100% - 8px);background:var(--g8);border-radius:99px;transition:left .6s var(--ease), width .6s var(--ease);z-index:0}
+.ftab{position:relative;z-index:1;flex:none;border:0;background:transparent;cursor:pointer;padding:12px 20px;border-radius:99px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);transition:color .4s;display:flex;gap:8px;align-items:center}
+.ftab sup{font-size:11px;color:var(--o6);font-weight:800}
+.ftab.on{color:#fff}
+.ftab.on sup{color:var(--o5)}
+.pgroup{padding-top:72px}
+.pgroup:first-child{padding-top:56px}
+.pgroup-h{display:flex;align-items:baseline;gap:18px;margin-bottom:36px;padding-bottom:20px;border-bottom:1.5px solid var(--ink)}
+.pgroup-h h2{font-size:clamp(34px,4.6vw,68px);font-weight:800;letter-spacing:-.035em;text-transform:uppercase}
+.pgroup-h span{font-weight:800;color:var(--o6);font-size:18px}
+.pgroup-h p{margin-left:auto;color:var(--muted);max-width:34em;font-size:15px;text-align:right}
+@media (max-width:720px){.pgroup-h{flex-wrap:wrap}.pgroup-h h2{font-size:clamp(22px,7vw,40px)}.gal-h h2,.sh h2{font-size:clamp(34px,11vw,64px)}.pgroup-h p{margin-left:0;text-align:left}}
+.fade-in{animation:fin .8s var(--ease) both}
+@keyframes fin{from{opacity:0;transform:translateY(30px)}}
+
+/* ---------- project detail ---------- */
+.pd-hero{background:var(--g9);color:#fff;padding-block:160px 0;position:relative;overflow:hidden}
+.crumb{display:flex;gap:10px;align-items:center;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.crumb a:hover{color:var(--o5)}
+.pd-hero h1{font-size:var(--fs,clamp(46px,8.4vw,150px));font-weight:800;letter-spacing:-.045em;line-height:.9;text-transform:uppercase;margin-top:28px;max-width:16ch}
+.pd-hero .lead{font-size:clamp(17px,1.5vw,21px);opacity:.8;max-width:40em;margin-top:28px}
+.pd-cover{margin-top:64px;position:relative;height:clamp(300px,62vw,860px);overflow:hidden;border-radius:28px 28px 0 0}
+.pd-cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;object-position:top center;will-change:transform}
+.pd-body{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:clamp(40px,6vw,110px);padding-block:100px 40px;align-items:start}
+.pd-sec + .pd-sec{margin-top:64px}
+.pd-sec h2{font-size:13px;font-family:var(--f-b);font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o6);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.pd-sec h2::before{content:"";width:28px;height:2px;background:currentColor}
+.pd-sec .big{font-family:var(--f-d);font-weight:700;font-size:clamp(24px,2.4vw,36px);line-height:1.22;letter-spacing:-.02em;color:var(--g9)}
+.pd-sec p.t{font-size:clamp(17px,1.3vw,19px);color:var(--muted);max-width:44em}
+.dlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dlist li{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:var(--sage);font-weight:700;font-size:15px;line-height:1.4;transition:background .4s, transform .5s var(--ease)}
+.dlist li:hover{background:var(--mint);transform:translateX(6px)}
+.dlist li span{flex:none;width:30px;height:30px;border-radius:50%;background:var(--g8);color:var(--o5);display:grid;place-items:center;font-size:12px;font-weight:800}
+@media (max-width:620px){.dlist{grid-template-columns:1fr}}
+.quote{margin-top:64px;background:var(--g8);color:#fff;border-radius:26px;padding:44px;position:relative;overflow:hidden}
+.quote::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:var(--o5);right:-60px;bottom:-80px}
+.quote blockquote{margin:0;font-family:var(--f-d);font-size:clamp(22px,2.2vw,32px);line-height:1.25;font-weight:700;position:relative;z-index:1}
+.quote .who{margin-top:24px;font-weight:800;position:relative;z-index:1}
+.quote .who span{display:block;font-weight:600;opacity:.7}
+.side{position:sticky;top:120px;display:flex;flex-direction:column;gap:20px}
+.side .box{background:var(--g9);color:#fff;border-radius:26px;padding:30px;position:relative;overflow:hidden}
+.side .box::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgb(242 138 18/.5),transparent 70%);right:-50px;top:-50px}
+.side dl{margin:0;display:grid;gap:0;position:relative}
+.side dl div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgb(255 255 255/.12)}
+.side dt{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.side dd{margin:0;font-weight:700;text-align:right}
+.side .btn{width:100%;margin-top:22px}
+.side .btn + .btn{margin-top:10px}
+.side .url{font-size:13px;opacity:.65;margin-top:12px;text-align:center;word-break:break-all;position:relative}
+.side .nolive{margin-top:22px;padding:16px;border-radius:14px;background:rgb(255 255 255/.07);font-size:14px;opacity:.85;position:relative}
+.side .hire{background:var(--peach);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.side .hire b{font-family:var(--f-d);font-size:22px;color:var(--g9);line-height:1.15}
+.side .hire p{font-size:14px;color:var(--muted)}
+@media (max-width:1000px){.pd-body{grid-template-columns:1fr}.side{position:static;order:-1}}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:20px 100px}
+.gal figure{margin:0;border-radius:22px;overflow:hidden;background:var(--sage);cursor:zoom-in;position:relative}
+.gal figure.full{grid-column:1/-1}
+.gal figure img{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.gal figure:hover img{transform:scale(1.03)}
+.gal-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding-top:40px;margin-bottom:28px;border-top:1.5px solid var(--ink)}
+.gal-h h2{font-size:clamp(34px,4.6vw,68px);font-weight:800;letter-spacing:-.035em;text-transform:uppercase;margin-top:28px}
+@media (max-width:720px){.gal{grid-template-columns:1fr}}
+.next{display:block;background:var(--o5);color:var(--g9);padding-block:80px;position:relative;overflow:hidden}
+.next .k{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:13px}
+.next .t{font-family:var(--f-d);font-weight:800;font-size:clamp(40px,8vw,140px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;margin-top:18px;display:flex;align-items:center;gap:.3em;transition:transform .8s var(--ease)}
+.next:hover .t{transform:translateX(2vw)}
+.next .t i{font-style:normal;flex:none;width:.8em;height:.8em;border-radius:50%;background:var(--g9);color:var(--o5);display:grid;place-items:center;font-size:.5em;transition:transform .8s var(--ease)}
+.next:hover .t i{transform:rotate(-45deg)}
+.lb{position:fixed;inset:0;z-index:120;background:rgb(10 42 27/.94);display:none;place-items:center;padding:30px;cursor:zoom-out}
+.lb.on{display:grid;animation:fin .5s var(--ease)}
+.lb img{max-height:calc(100dvh - 60px);width:auto;border-radius:14px}
+
+/* ---------- about page ---------- */
+.cards6{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.c6{background:rgb(255 255 255/.06);border:1px solid rgb(255 255 255/.12);border-radius:24px;padding:34px;transition:background .5s, transform .6s var(--ease), border-color .5s;min-width:0}
+.c6:hover{background:var(--o5);color:var(--g9);transform:translateY(-8px);border-color:var(--o5)}
+.c6 .ic{width:58px;height:58px;border-radius:16px;background:var(--o5);color:var(--g9);display:grid;place-items:center;font-family:var(--f-d);font-weight:800;font-size:20px;margin-bottom:26px;transition:background .5s,color .5s}
+.c6:hover .ic{background:var(--g9);color:var(--o5)}
+.c6 h3{font-size:24px;letter-spacing:-.02em}
+.c6 p{margin-top:12px;opacity:.78;font-size:15px}
+@media (max-width:1000px){.cards6{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.cards6{grid-template-columns:1fr}}
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.cert{display:flex;gap:16px;align-items:center;padding:22px;border-radius:18px;background:var(--sage);font-weight:700;transition:transform .5s var(--ease), background .4s}
+.cert:hover{transform:translateY(-4px);background:var(--mint)}
+.cert i{flex:none;width:44px;height:44px;border-radius:50%;background:var(--o5);display:grid;place-items:center;font-style:normal;color:var(--g9);font-weight:800}
+
+/* ---------- contact ---------- */
+.ct{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(40px,6vw,110px);align-items:start}
+.ct > *{min-width:0}
+.ccards{display:grid;gap:16px;margin-top:48px}
+.cc{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:30px 32px;border-radius:24px;background:rgb(255 255 255/.06);border:1px solid rgb(255 255 255/.14);position:relative;overflow:hidden;isolation:isolate;transition:color .5s}
+.cc::before{content:"";position:absolute;inset:0;background:var(--o5);z-index:-1;transform:translateX(-101%);transition:transform .7s var(--ease)}
+.cc:hover::before{transform:none}
+.cc:hover{color:var(--g9)}
+.cc b{font-family:var(--f-d);font-size:clamp(26px,3vw,40px);display:block;line-height:1.05}
+.cc span{font-size:14px;opacity:.75}
+.cc i{font-style:normal;flex:none;width:56px;height:56px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:20px;transition:transform .6s var(--ease)}
+.cc:hover i{transform:rotate(-45deg)}
+.mail{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px;padding:22px 26px;border-radius:20px;background:rgb(255 255 255/.06)}
+.mail code{font-family:var(--f-b);font-weight:700;font-size:18px;user-select:all}
+.mail button{margin-left:auto;border:0;cursor:pointer;background:var(--o5);color:var(--g9);font-weight:800;padding:10px 18px;border-radius:99px}
+.ct-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/4.8;background:var(--g7)}
+.ct-photo .sun{position:absolute;width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFB04A,var(--o5) 55%,var(--o6));left:10%;top:12%}
+.ct-photo img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:92%}
+.avail{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;padding:10px 18px;border-radius:99px;background:rgb(255 255 255/.08);margin-top:24px}
+.avail i{width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 0 0 rgb(61 220 132/.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgb(61 220 132/0)}100%{box-shadow:0 0 0 0 rgb(61 220 132/0)}}
+@media (max-width:900px){.ct{grid-template-columns:1fr}.ct-photo{max-width:460px}}
+
+.progress{position:fixed;left:0;top:0;height:3px;background:var(--o5);z-index:95;width:0;transform-origin:left}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv.pre{opacity:1;transform:none}.clip.pre img{clip-path:none;transform:none}
+  .split .w > span,.bigname .ch{transform:none}.hero-photo img{transform:none;opacity:1}
+  .loader{display:none}
+}
+</style>
+
+<div class="progress" id="progress"></div>
+<div class="loader" id="loader" aria-hidden="true"><div class="nm">Stanley Ugwu · Online Course Creator</div><div class="ln"><span id="lnum">0</span>%</div></div>
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="cur" id="cur" aria-hidden="true"><span id="curt">View</span></div>
+<div class="cur-dot" id="curd" aria-hidden="true"></div>
+<div class="preview" id="preview" aria-hidden="true"><img id="previewimg" alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-label="Image preview"><img id="lbimg" alt=""></div>
+
+<header class="hd gx" id="hd">
+  <div class="hd-in">
+    <a class="logo" href="#home" aria-label="Stanley Ugwu, home"><span class="mk">S</span>Stanley.U</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home" data-r="home"><span class="roll" data-roll>Home</span></a>
+      <a href="#about" data-r="about"><span class="roll" data-roll>About</span></a>
+      <a href="#projects" data-r="projects"><span class="roll" data-roll>Projects</span></a>
+      <a href="#contact" data-r="contact"><span class="roll" data-roll>Contact</span></a>
+    </nav>
+    <a class="btn b-or mag" href="https://www.upwork.com/freelancers/~014f5c65559eaa68ed" target="_blank" rel="noopener"><span class="roll" data-roll>Hire me</span><span class="ic">↗</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+<div class="mmenu" id="mmenu">
+  <nav aria-label="Mobile"><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+  <div class="soc"><a href="https://www.upwork.com/freelancers/~014f5c65559eaa68ed" target="_blank" rel="noopener">Upwork ↗</a><a href="https://www.fiverr.com/s/emmL1L3" target="_blank" rel="noopener">Fiverr ↗</a></div>
+</div>
+
+<main id="app"></main>
+
+<script>
+const PROJECTS = [{"id": "unstressable", "title": "Ongoing Kajabi development for a global wellbeing platform", "platform": "Kajabi", "client": "Unstressable", "year": "2026", "duration": "1 week", "location": "Delaware, USA", "summary": "Kajabi development and support for Mo Gawdat and Alice Law's wellbeing platform.", "overview": "Unstressable is a global wellbeing movement founded by Mo Gawdat and Alice Law. As the platform grew, new products, content, and member experiences kept arriving, and the team needed a trusted technical partner to add them without creating unnecessary complexity.", "approach": "I’ve supported the team since the early stages as an ongoing Kajabi partner: building and refining the website and landing pages, adding custom CSS and templates, supporting the member experience and Kajabi app, organizing audiences, handling DNS, domain, and Google Workspace issues, and shipping monthly improvements so the platform stays reliable and easy to manage.", "deliverables": ["Kajabi development", "Landing pages", "Custom CSS & templates", "Member experience", "Dns & domain setup", "Monthly improvements"], "testimonial": {"quote": "He’s quick, makes things look great and knows the technical side so well it makes the whole process very easy.", "name": "Michael Torres", "role": "Co-founder · Unstressable"}, "images": ["unstressable-g1.jpg", "unstressable-g2.jpg", "unstressable-g3.jpg", "unstressable-g4.jpg", "unstressable-g5.jpg"], "live": [["https://www.unstressable.com/", "unstressable.com"]]}, {"id": "timcooper", "title": "Rebrand, Kajabi membership and funnels", "platform": "Kajabi", "client": "Tim Cooper Coaching", "year": "2026", "duration": "2 weeks", "location": "Arizona, United States", "summary": "Rebrand, Kajabi membership and funnels for a men's mindset coach.", "overview": "Tim Cooper’s coaching business had grown into multiple products, programs, and audience entry points. He needed a rebrand that reflected his mission of helping ambitious men escape the success trap, plus a clearer customer journey into his coaching programs and memberships.", "approach": "We rebranded the site first, then built the Kajabi ecosystem around the new message: product and offer creation, a membership with daily live coaching calls and a growing community, lead magnets and funnels, and landing pages. Canva assets kept launches and campaigns visually consistent, and ongoing support keeps the platform evolving.", "deliverables": ["Rebrand & website", "Kajabi products & offers", "Membership platform", "Lead magnets & funnels", "Canva assets", "Ongoing support"], "testimonial": {"quote": "They are super professional, offer unbelievable value and the quality of their work is second to none.", "name": "Tim Cooper", "role": "Founder · Tim Cooper Coaching"}, "images": ["timcooper-g1.jpg", "timcooper-g2.jpg", "timcooper-g3.jpg", "timcooper-g4.jpg", "timcooper-g5.jpg"], "live": [["https://www.timcoopercoaching.com/", "timcoopercoaching.com"]]}, {"id": "mindability", "title": "Figma-to-Kajabi website and course experience", "platform": "Kajabi", "client": "MindAbility", "year": "2025", "duration": "3 weeks", "location": "Paris, France", "summary": "Figma-to-Kajabi website and course experience for a mental wellness brand.", "overview": "MindAbility offers step-by-step, evidence-based courses on mental wellness and resilience. They needed one cohesive Kajabi experience for new visitors and existing students, a course design that worked across existing products, and a platform their team could manage and expand into new regions.", "approach": "I designed the home, product, about, contact, and system pages in Figma first, then built them in Kajabi once approved. I created the course design and student experience, applied it to existing products, connected forms, offers, and coupons, and set up basic automations. After testing, I trained the team to update content and duplicate products and offers for new regions.", "deliverables": ["Figma design", "Kajabi website", "Course experience design", "Coupons & automations", "Team training"], "testimonial": null, "images": ["mindability-g1.jpg", "mindability-g2.jpg", "mindability-g3.jpg", "mindability-g4.jpg", "mindability-g5.jpg", "mindability-g6.jpg"], "live": [["https://www.mindability.com/", "mindability.com"]]}, {"id": "agape", "title": "Kajabi website design & brand identity", "platform": "Kajabi", "client": "Agapē Matchmaking", "summary": "An elegant Kajabi website and brand identity for an executive matchmaking service.", "overview": "Agapē Matchmaking needed an online presence that communicates trust, discretion and the personal approach behind its executive matchmaking service.", "approach": "I designed an elegant Kajabi website that pairs a refined brand identity with a polished user experience, guiding prospective clients through the site with custom page layouts, illustrations and subtle animation.", "deliverables": ["Kajabi website design and setup", "UI/UX design", "Custom page layouts", "Brand collateral", "Illustrations", "Animations"], "images": ["agape-1.jpg", "agape-2.jpg", "agape-3.jpg"], "live": [["https://www.agapematch.com/", "agapematch.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "brad", "title": "Kajabi website, funnels and courses", "platform": "Kajabi", "client": "Brad Scot Johnson", "year": "2026", "duration": "2 weeks", "location": "Utah, United States", "summary": "Kajabi website, funnels, courses and sales pages for a life coach and speaker.", "overview": "Brad Scot Johnson is a life coach and speaker who wanted to focus on content and audience growth, not tech and design. His offers kept evolving, so he needed a premium website and one reliable partner to build funnels, courses, and automations as each new offer launched.", "approach": "I started with a premium Kajabi website, then stayed on as his ongoing partner: a lead generation funnel for every new lead magnet, sales funnels and sales pages for his offers, online courses, and email automation. I also manage his weekly broadcast emails and design a new lead magnet every month.", "deliverables": ["Premium website", "Sales pages", "Lead generation funnels", "Online course builds", "Email automation", "Lead magnet design"], "testimonial": null, "images": ["brad-g1.jpg", "brad-g2.jpg", "brad-g3.jpg", "brad-g4.jpg", "brad-g5.jpg"], "live": [["https://www.bradscotjohnson.com/", "bradscotjohnson.com"], ["https://www.bradscotjohnson.com/refresh", "REFRESH sales page"]]}, {"id": "slimming", "title": "Kajabi course website and funnels", "platform": "Kajabi", "client": "Slimming Grace Academy", "year": "2025", "duration": "2 weeks", "location": "Florida, United States", "summary": "Kajabi course website and funnels for a provider and patient education academy.", "overview": "Slimming Grace Academy is an online education platform serving two audiences: healthcare providers and patients. It needed a clean, trustworthy site that sent each audience to the right courses, with a clear path from discovery to enrollment and a way to nurture visitors who weren’t ready to buy.", "approach": "We took a dual-audience approach: clinical and evidence-driven for providers, empathetic and outcome-focused for patients. Courses were split into Provider and Patient categories, each with persuasive detail pages and clear calls to action. Segmented funnels and lead capture (email list, free guide, free trial invite) were built in to reduce friction before purchase.", "deliverables": ["Kajabi website", "Course catalog", "Course detail pages", "Segmented funnels", "Lead capture", "Free guide & trial invite"], "testimonial": null, "images": ["slimming-g1.jpg", "slimming-g2.jpg", "slimming-g3.jpg", "slimming-g4.jpg", "slimming-g5.jpg", "slimming-g6.jpg"], "live": [["https://academy.slimminggrace.com/", "academy.slimminggrace.com"]]}, {"id": "ivf", "title": "Kajabi course setup and landing page", "platform": "Kajabi", "client": "IVF Nurse Accelerator", "year": "2026", "duration": "2 weeks", "location": "London, United Kingdom", "summary": "A ten-unit Kajabi course and a responsive landing page for a nursing program.", "overview": "IVF Nurse Accelerator is a specialist online education program designed for nurses entering reproductive medicine. The project involved setting up the course inside Kajabi and developing a responsive landing-page mockup for a ten-unit learning program. The focus was to establish the course structure and present a clear direction for the program's sales page while keeping completed deliverables separate from the wider launch activities still in progress.", "approach": "I established the ten-unit course structure inside Kajabi and developed the current responsive landing-page direction for review. Throughout the project, I kept the client updated on progress and communicated which deliverables were complete and which remained underway. After reporting the completed course setup and sharing the live landing-page mockup on August 19, 2026, I submitted the funded milestone for review with a corrected handover PDF on August 22. This approach maintained a clear handover trail and set realistic expectations for the remaining launch work.", "deliverables": ["Kajabi course setup", "10-unit course structure", "Responsive landing page mockup", "Landing page design direction", "Project progress updates", "Milestone handover pdf"], "testimonial": null, "images": ["ivf-g1.jpg", "ivf-g2.jpg", "ivf-g3.jpg", "ivf-g4.jpg", "ivf-g5.jpg"], "live": [["https://ivf-nurse-accelerator-live.vercel.app/#inside", "Landing page"]]}, {"id": "susan", "title": "The Confident Artist's Pricing Blueprint", "platform": "Kajabi", "client": "Susan Maddux Studio", "summary": "Kajabi online course, masterclass and evergreen sales funnel for a working artist.", "overview": "Susan Maddux had existing course content and wanted it packaged into a polished online learning and sales experience.", "approach": "I refined the course and structured the curriculum, then built a low-ticket pricing masterclass, a long-form sales page, a course waitlist, opt-ins, email sequences and launch content, all supported by an evergreen sales funnel designed to build authority and support ongoing sales.", "deliverables": ["Course refinement and curriculum structure", "Low-ticket pricing masterclass", "Long-form sales page", "Course waitlist and opt-ins", "Email sequences", "Launch content"], "images": ["susan-1.jpg", "susan-2.jpg", "susan-3.jpg"], "live": [["https://courses.susanmadduxstudio.com/masterclass", "courses.susanmadduxstudio.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "globalveg", "title": "Branding & a 6-module online cooking course", "platform": "Kajabi", "client": "Global Vegetarian", "summary": "Brand identity, Kajabi website and a six-module cooking course for a plant-forward brand.", "overview": "Global Vegetarian, a plant-forward cooking brand specialising in healthy, Indian-inspired vegetarian food, needed a complete digital learning platform.", "approach": "I designed the logo and brand identity, built a custom Kajabi website with lead magnet and recipe pages, and created a six-module online cooking course. I also produced and edited cooking videos, made whiteboard-style explainer animations and prepared branded lesson visuals and downloadable recipe PDFs.", "deliverables": ["Logo and brand identity", "Custom Kajabi website", "Lead magnet and recipe pages", "Six-module online course", "Cooking video editing and animations", "Branded lesson visuals and recipe PDFs"], "images": ["globalveg-1.jpg", "globalveg-2.jpg", "globalveg-3.jpg"], "live": [["https://globalvegetarian.mykajabi.com/", "globalvegetarian.mykajabi.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "alphastute", "title": "Feminine Kajabi website redesign", "platform": "Kajabi", "client": "AlphaStute", "summary": "A bold, feminine Kajabi redesign for a leadership coaching brand.", "overview": "Leadership strategist Shelly's old website felt static and corporate, and didn't reflect her brand.", "approach": "I redesigned AlphaStute's entire website on Kajabi as a bold, feminine, modern experience that puts her freebies, products and flagship program, Beyond the Peak, into one clear flow, with a mobile-friendly design built to convert and grow with her brand.", "deliverables": ["Full Kajabi website redesign", "Brand look and feel", "Freebie and product flow", "Beyond the Peak program pages", "Mobile-friendly design"], "images": ["alphastute-1.jpg", "alphastute-2.jpg"], "live": [["https://www.alphastute.com/", "alphastute.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "umix", "title": "Kajabi website for a sync licensing community", "platform": "Kajabi", "client": "Underground Mix", "summary": "A Kajabi website built to convert for a premium sync licensing community.", "overview": "Underground Mix, founded by Devon DeVries, is a premium sync licensing community for indie songwriters, artists and producers.", "approach": "I handled the full website build on Kajabi, from the homepage and navigation to the calls to action that guide visitors toward the offers. The site showcases the community's services and programs, captures leads and gives visitors a seamless experience from first click to member login.", "deliverables": ["Full Kajabi website build", "Homepage and navigation", "Services and programs showcase", "Lead capture", "Member login experience"], "images": ["umix-1.jpg", "umix-2.jpg", "umix-3.jpg"], "live": [["https://underground-mix.com/", "underground-mix.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "anges", "title": "Course migration & portal for 3 French courses", "platform": "Kajabi", "client": "Anges Québec", "summary": "Three French language courses migrated into one branded Kajabi student portal.", "overview": "Anges Québec had three French language courses (Beginner, Intermediate and Advanced) that needed to move into Kajabi as one cohesive learning experience.", "approach": "I migrated the course content and aligned the experience with the client's existing brand, with custom student portal pages, branded lesson visuals, offer and checkout pages, domain connection and email automations to simplify access and enrolment.", "deliverables": ["Course content migration", "Custom student portal pages", "Branded lesson visuals", "Offer and checkout pages", "Domain connection", "Email automations"], "images": ["anges-2.jpg", "anges-1.jpg"], "live": [["https://angesquebec.com/en/", "angesquebec.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "nuurvana", "title": "Quiz funnel & email automation engine", "platform": "Kajabi", "client": "Nuurvana", "summary": "A 3-phase Kajabi automation engine built around one quiz.", "overview": "Nuurvana, an online course and retreat business, wanted its \"Which Witch\" quiz to carry leads through a full offer ladder to a high-ticket retreat, hands-off.", "approach": "I designed a 3-phase Kajabi automation engine with quiz logic, 4 archetype paths, 8 micro-offers, 2 order bumps and tagging-based routing, so no contact is manually moved between sequences. I focused on guard conditions and clean tagging so the system scales without breaking.", "deliverables": ["Quiz logic and Kajabi integration", "4 archetype paths", "8 micro-offers", "2 order bumps", "Tag-based routing", "Email automation"], "images": ["nuurvana-1.jpg"], "live": [["https://learn.nuurvana.com/ww", "learn.nuurvana.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "hbl", "title": "Custom Kajabi quiz: Discover Your Empire Stage", "platform": "Kajabi", "client": "Her Best Life", "summary": "A custom quiz that blends into a Kajabi site with no monthly software fee.", "overview": "Her Best Life, a community for female leaders, runs entirely on Kajabi and wanted to reimagine its quiz experience so it blends into the pages seamlessly.", "approach": "Working with The Quiz Creator, I delivered a custom quiz with smart automations, a clear landing page flow and a progress-tracked question journey, built for zero maintenance with no monthly software subscription.", "deliverables": ["Custom quiz design", "Smart automations", "Landing page flow", "Progress-tracked questions"], "images": ["hbl-1.jpg"], "live": [["https://www.herbestlife.com/quiz", "herbestlife.com/quiz"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "hypno", "title": "Kajabi course & community for a cohort program", "platform": "Kajabi", "client": "Mike Smith Hypnosis", "summary": "Course, audio library, community hub and group coaching in one Kajabi platform.", "overview": "Mike Smith Hypnosis needed a cohort-based learning experience where members could learn, connect and join live calls in one place.", "approach": "After a strategy session to define the program's goals, audience and structure, I set up course modules with an audio resource library, a community hub, a framework for recurring group coaching sessions, access groups and offers, and automated email sequences. After client review and testing, it launched as one platform.", "deliverables": ["Course modules", "Audio resource library", "Community hub", "Group coaching framework", "Access groups and offers", "Automated email sequences"], "images": ["hypno-1.jpg"], "live": [], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "concierge", "title": "Wix Studio site and branded Kajabi delivery", "platform": "Wix Studio", "client": "Concierge Class", "year": "2026", "duration": "1 week", "location": "Ohio, USA", "summary": "Wix Studio site and branded Kajabi delivery for a cohort course launch.", "overview": "Casey Lozano, founder of Scottsdale Bachelorette, a $4M business, was launching Concierge Class, a cohort program for aspiring vacation concierge entrepreneurs. The website, Kajabi checkout, login, and library didn’t feel like one brand, and a fragmented journey would have cost trust, conversions, and enrollment momentum.", "approach": "I paired a four-page Wix Studio marketing site with Kajabi for delivery and made them feel like one ecosystem. The sales page explained the offer and outcomes, the About page built credibility, and a freebie page captured leads into Kajabi. The result is a journey from first click to paid member without users feeling they switched platforms.", "deliverables": ["Wix Studio website", "Sales page", "About page", "Freebie page", "Kajabi delivery setup", "Brand alignment"], "testimonial": null, "images": ["concierge-g1.jpg", "concierge-g2.jpg", "concierge-g3.jpg", "concierge-g4.jpg", "concierge-g5.jpg"], "live": [["https://www.conciergeclass.net/", "conciergeclass.net"]]}, {"id": "perfeqta", "title": "Teachable course website and sales funnel", "platform": "Teachable", "client": "Perfeqta", "year": "2025", "duration": "3 weeks", "location": "Alabama, United States", "summary": "Teachable course website design, content upload and sales funnel integration.", "overview": "Perfeqta provides services focused on learning and development, leadership, and organizational performance. The project involved creating a course website from start to finish, uploading the course materials, connecting the sales funnel, and preparing the website for launch. The goal was to bring the website, learning content, and sales process together in one cohesive online experience.", "approach": "I designed the course website from the ground up, organized and uploaded the course materials, and connected the sales funnel to support the customer journey. I then prepared the website for launch, ensuring the main components of the course platform and its sales process were in place.", "deliverables": ["Course website design", "Teachable course website", "Course materials upload", "Sales funnel integration", "Course content organization", "Website launch preparation"], "testimonial": null, "images": ["perfeqta-g1.jpg", "perfeqta-g2.jpg", "perfeqta-g3.jpg", "perfeqta-g4.jpg", "perfeqta-g5.jpg", "perfeqta-g6.jpg"], "live": [["https://www.goperfeqta.com/", "goperfeqta.com"]]}, {"id": "braids", "title": "Teachable course website and content upload", "platform": "Teachable", "client": "Braids by Antoinette", "year": "2026", "duration": "2 weeks", "location": "Florida, United States", "summary": "A Teachable course website with uploaded content and designed key pages.", "overview": "Braids By Antoinette needed a Teachable website to present its braiding education and online training. I assisted the client with setting up the website, uploading course content, and designing the homepage and supporting subpages to create a professional online learning experience.", "approach": "I helped configure the Teachable site, upload and organize the client's course materials, and design the homepage and other important webpages. After completing the initial setup, I also provided post-project support to assist the client with the website.", "deliverables": ["Teachable website setup and configuration.", "Course content upload and organization.", "Homepage design.", "Design of important supporting webpages.", "Website content organization and presentation.", "Post-project support following website completion."], "testimonial": null, "images": ["braids-g1.jpg", "braids-g2.jpg", "braids-g3.jpg", "braids-g4.jpg", "braids-g5.jpg", "braids-g6.jpg"], "live": [["https://braids-by-antoinette.teachable.com/", "braids-by-antoinette.teachable.com"]]}, {"id": "coastal", "title": "Teachable course site, sales page and checkout", "platform": "Teachable", "client": "Coastal Life Strategies", "year": "2026", "duration": "3 weeks", "location": "Ohio, USA", "summary": "Teachable course website with curriculum, sales page, checkout and enrolment flow.", "overview": "Coastal Life Strategies developed professional education focused on helping professionals understand the financial impact of opioid addiction and support the clients and families affected by it. The project involved setting up a complete Teachable course website, uploading the course content, designing the sales and checkout pages, and organizing the curriculum. The goal was to create a structured learning experience with clear enrollment buttons for professionals interested in the training.", "approach": "I set up the course website from start to finish, uploaded the learning materials, and organized the curriculum into a clear structure. I designed the sales page to present the training and its value to professional audiences, then created the checkout page and added clear enrollment buttons to guide prospective participants through the registration process.", "deliverables": ["Teachable course website setup", "Course content upload", "Curriculum structure and organization", "Sales page design", "Course content organization", "Website launch preparation"], "testimonial": {"quote": "Stanley got something most designers miss — that doing less is actually harder than doing more. The result looks effortless and took enormous discipline to arrive at.", "name": "Cheryl Canzanella", "role": "Editor in Chief"}, "images": ["coastal-g1.jpg", "coastal-g2.jpg", "coastal-g3.jpg", "coastal-g4.jpg", "coastal-g5.jpg"], "live": [["https://opioidfinancialawareness.com/research-resources/", "opioidfinancialawareness.com"]]}, {"id": "tso", "title": "Teachable website, course uploads and SEO", "platform": "Teachable", "client": "Training Source One", "year": "2026", "duration": "2 weeks", "location": "West Palm Beach, Florida, United States", "summary": "Teachable website setup, course uploads, webpage design and SEO.", "overview": "Training Source One provides professional training, leadership development, and organizational learning services. This project involved creating and configuring its Teachable online learning website, uploading course content, designing important webpages, and configuring SEO elements. The goal was to establish a professional online course platform where education professionals and training providers could explore learning opportunities. The project combined Teachable website design, online course setup, course content management, and search engine optimization to support the client's digital learning presence.", "approach": "I organized the website around the client's training services and available courses. I uploaded the course materials, designed the essential webpages, and configured SEO elements to prepare the website for learners.", "deliverables": ["Teachable website setup and configuration.", "Course content upload and organization.", "Homepage design.", "Design of important supporting webpages.", "Seo configuration.", "Completed online training website."], "testimonial": null, "images": ["tso-g1.jpg", "tso-g2.jpg", "tso-g3.jpg", "tso-g4.jpg", "tso-g5.jpg", "tso-g6.jpg"], "live": [["https://trainingsourceone.teachable.com/", "trainingsourceone.teachable.com"]]}, {"id": "dreamlife", "title": "Dream Life in 7 Steps", "platform": "Thinkific", "client": "Kaishon Holloway", "year": "2025", "duration": "2 weeks", "location": "Seattle, United States", "summary": "Thinkific online course and sales page for a 7-step personal growth method.", "overview": "Kaishon Holoway is a mentor and coach with a signature method that blends positive psychology, music, technology, and visualization. He wanted to turn it into a self-paced online course people could follow step by step, with a clear page that explains it and makes enrolling simple.", "approach": "The course follows the method’s seven steps: each step became a section, broken into short lessons with directions and activities, 36 lessons in all on Thinkific. I then built a sales page with the instructor profile, a full curriculum, social proof, and clear enroll buttons, plus links into his community, 1:1 coaching, and workshops.", "deliverables": ["Thinkific course build", "Curriculum structure", "36 lessons", "Course sales page", "Instructor profile", "Enrollment path"], "testimonial": null, "images": ["dreamlife-g1.jpg", "dreamlife-g2.jpg", "dreamlife-g3.jpg", "dreamlife-g4.jpg", "dreamlife-g5.jpg"], "live": [["https://kaishonholloway.thinkific.com/courses/dreamlifein7steps", "kaishonholloway.thinkific.com"]]}, {"id": "foi", "title": "Thinkific website creation", "platform": "Thinkific", "client": "FOI Equipment Institute", "summary": "Thinkific website, course upload, sales and checkout pages, and SEO.", "overview": "FOIEQUIP needed a professional course website to present its learning materials and support enrolment.", "approach": "I created the Thinkific website, uploaded course content, designed key sales and checkout pages and configured website SEO, organising the materials so courses are presented clearly and easy to find.", "deliverables": ["Thinkific website creation", "Course content upload", "Sales pages", "Checkout pages", "SEO configuration"], "images": ["foi-1.jpg", "foi-2.jpg"], "live": [["https://www.foiequip.org/pages/equip", "foiequip.org"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "export", "title": "Eight courses and a full LearnWorlds website", "platform": "LearnWorlds", "client": "Export Connector", "year": "2026", "duration": "3 weeks", "location": "Arizona, USA", "summary": "Eight courses and a complete LearnWorlds website with custom layouts.", "overview": "Export Connector provides online training designed to help entrepreneurs and businesses understand exporting and expand into international markets. The project involved creating eight full courses and designing their course overview pages on LearnWorlds. I also built the entire website, replacing the supplied dummy text and implementing a fully custom layout design tailored to the business and its educational content.", "approach": "I developed the website around the client's training content and course offerings. I replaced the dummy text with the intended content, created custom layouts to suit the business, and designed overview pages for all eight courses. My focus was to create a cohesive website that presented the training programs clearly and provided visitors with an organized way to explore the courses.", "deliverables": ["Creation and setup of eight full courses on LearnWorlds.", "Design of course overview pages for all eight courses.", "Complete LearnWorlds website design and development.", "Custom website layout design tailored to the business and its content.", "Organized presentation of the training programs and course offerings.", "Monthly improvements"], "testimonial": null, "images": ["export-g1.jpg", "export-g2.jpg", "export-g3.jpg", "export-g4.jpg", "export-g5.jpg", "export-g6.jpg"], "live": [["https://exportconnector.learnworlds.com/home", "exportconnector.learnworlds.com"]]}, {"id": "iridium", "title": "LearnWorlds website design and SEO", "platform": "LearnWorlds", "client": "Iridium Continuing Education", "year": "2026", "duration": "2 weeks", "location": "Indiana, United States", "summary": "LearnWorlds website design and SEO for online course delivery.", "overview": "Designed the Iridium Continuing Education website using LearnWorlds, creating an online learning platform and configuring SEO to improve the website’s discoverability across search engines.", "approach": "The project focused on building a professional online course website in LearnWorlds and implementing SEO configurations to help search engines understand and discover the website. The goal was to establish a clear, accessible online presence for continuing education.", "deliverables": ["Learnworlds website design and setup", "Online course website structure", "Website page design and organization", "Seo configuration and optimization", "Search engine discoverability improvements", "Online learning platform setup"], "testimonial": null, "images": ["iridium-g1.jpg", "iridium-g2.jpg", "iridium-g3.jpg", "iridium-g4.jpg", "iridium-g5.jpg", "iridium-g6.jpg"], "live": [["https://www.iridiumce.com/", "iridiumce.com"]]}, {"id": "sistem", "title": "Multi-page LearnWorlds tutoring website", "platform": "LearnWorlds", "client": "SiSTEM Tutoring", "year": "2026", "duration": "2 weeks", "location": "Ontario, Canada", "summary": "A multi-page tutoring website with custom layouts and imagery.", "overview": "SiSTEM Tutoring needed a complete website to present its tutoring and educational services. I designed the website on LearnWorlds, building approximately eight to nine pages using the content provided in a Google Doc. The project involved creating custom page layouts, organizing the supplied content, and selecting relevant free images that complemented the business theme.", "approach": "I started with the dummy text provided in the Google Doc and used it as the foundation for the website structure. I developed custom layouts tailored to the content of each page and selected free, relevant images to complement the tutoring business. My focus was to create a cohesive website that presented the business and its services clearly across the different pages.", "deliverables": ["Complete website design and setup on LearnWorlds.", "Design and layout of approximately eight to nine website pages.", "Custom page layouts tailored to the supplied content.", "Organization and placement of content from the provided Google doc.", "Selection and integration of free, relevant images matching the business theme.", "A complete multi-page website presenting sistem tutoring and its services."], "testimonial": null, "images": ["sistem-g1.jpg", "sistem-g2.jpg", "sistem-g3.jpg", "sistem-g4.jpg", "sistem-g5.jpg", "sistem-g6.jpg", "sistem-g7.jpg"], "live": [["https://www.sistemtutoring.com/", "sistemtutoring.com"]]}, {"id": "astro", "title": "Astrology & numerology training platform", "platform": "Moodle", "client": "Samantha Zachh", "year": "2026", "duration": "2 weeks", "location": "Klaipėda County, Lithuania", "summary": "Moodle LMS for astrology and numerology courses with video lessons and quizzes.", "overview": "Developed an online learning platform for astrology and numerology training using Moodle. The platform supports a structured educational experience with 16 recorded lessons, learning materials, knowledge-check quizzes, and different course packages. The curriculum introduces learners to numerology fundamentals, zodiac signs, astrological houses, planets, aspects, and natal chart analysis.", "approach": "Focused on organizing the course into a progressive learning journey, making educational content accessible for self-paced study, and presenting different course packages to accommodate learners seeking independent study or additional support. The learning experience includes recorded video lessons, supporting materials, quizzes for selected topics, and opportunities to ask questions through the learning platform.", "deliverables": ["Moodle LMS-based online learning platform", "Structured astrology and numerology course curriculum", "Organization of 16 recorded video lessons", "Supporting learning materials and lesson slides where available", "Knowledge-check quizzes for selected topics", "Course packages with different levels of learner support"], "testimonial": {"quote": "Stanley did an excellent job developing our Moodle learning platform. The course structure and overall experience turned out great!", "name": "Samantha Zachh", "role": "Astrology Course Instructor"}, "images": ["astro-g1.jpg", "astro-g2.jpg", "astro-g3.jpg", "astro-g4.jpg", "astro-g5.jpg", "astro-g6.jpg"], "live": [["https://zachh.lt/astrologijosmokymai/", "zachh.lt course"], ["https://zachh.lt/", "zachh.lt"]]}, {"id": "primelearn", "title": "PrimeLearn.ai Moodle LMS", "platform": "Moodle", "client": "SELC · PrimeLearn.ai", "year": "2026", "duration": "1 week", "location": "Iowa, USA", "summary": "Moodle LMS customization, secure authentication and course management.", "overview": "Developed and customized the Moodle Learning Management System (LMS) platform for SELC, implementing secure authentication, course management modules, and performance optimizations. The project focused on strengthening the platform's technical functionality to support online education and course administration. PrimeLearn.ai presents a broad learning platform featuring technology programs, professional skills training, free training programs, and flexible learning options.", "approach": "Focused on Moodle LMS customization and technical improvements to support secure platform access, organized course management, and improved performance. The work addressed essential learning management functionality to support the delivery and administration of online training.", "deliverables": ["Moodle LMS development and customization", "Secure authentication implementation", "Course management module implementation", "Lms performance optimization", "Learning platform functionality improvements", "Technical support for online course administration"], "testimonial": null, "images": ["primelearn-g1.jpg", "primelearn-g2.jpg", "primelearn-g3.jpg", "primelearn-g4.jpg", "primelearn-g5.jpg", "primelearn-g6.jpg"], "live": [["https://primelearn.ai/", "primelearn.ai"]]}, {"id": "kids", "title": "Skool community & online cooking academy", "platform": "Skool", "client": "Kids Can Cook", "summary": "A family-friendly Skool cooking academy with free and paid tiers.", "overview": "Chef D wanted to turn his vision for Kids Can Cook into an organised online cooking academy for children and parents.", "approach": "I built a family-friendly Skool community with structured cooking courses, recipe videos, printable activities, onboarding pages, free and paid membership access and premium curriculum sections, set up to support future growth.", "deliverables": ["Skool community setup", "Structured cooking courses", "Recipe videos and printables", "Onboarding pages", "Free and paid membership access", "Premium curriculum sections"], "images": ["kids-1.jpg"], "live": [["https://www.skool.com/kids-can-cook-2757/about", "skool.com/kids-can-cook"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "btc", "title": "Skool community setup", "platform": "Skool", "client": "Built to Close Blueprint", "summary": "A Teachable credit repair training rebuilt as a structured Skool community.", "overview": "Built to Close Blueprint had credit repair training on Teachable and wanted a structured community on Skool instead.", "approach": "I created branded classrooms, reorganised the lessons, built a dedicated Homebuyers Classroom, configured member onboarding and automated messaging, and organised premium content to guide members through credit improvement, mortgage readiness and homeownership.", "deliverables": ["Teachable to Skool migration", "Branded classrooms", "Homebuyers Classroom", "Member onboarding", "Automated messaging", "Premium content structure"], "images": ["btc-1.jpg", "btc-2.jpg"], "live": [["https://www.skool.com/built-to-close-blueprint-8113/about", "skool.com/built-to-close-blueprint"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "lucy", "title": "Conversion-focused Podia website", "platform": "Podia", "client": "Lucy Jackson", "year": "2026", "duration": "1 week", "location": "Seattle, United States", "summary": "A conversion-focused Podia website for an online business.", "overview": "Created a conversion-focused Podia website for Lucy, building a professional online presence designed to present her offerings clearly and guide visitors toward taking action. The project was completed through consistent communication, regular check-ins, and careful execution, meeting and exceeding the client's expectations.", "approach": "Focused on creating a professional Podia website with a clear structure and user-friendly experience. Maintained timely communication and regular check-ins throughout the project to ensure the work aligned with Lucy's expectations and project goals.", "deliverables": ["Podia website creation and setup", "Website layout and structure", "Conversion-focused website design", "Clear presentation of online offerings", "Website organization and user experience", "Project communication, review, and completion"], "testimonial": null, "images": ["lucy-g1.jpg", "lucy-g2.jpg", "lucy-g3.jpg", "lucy-g4.jpg", "lucy-g5.jpg", "lucy-g6.jpg"], "live": [["https://www.lucyjackson.com/", "lucyjackson.com"]]}, {"id": "home", "title": "Real estate lead generation funnel", "platform": "Systeme.io", "client": "Home Solutions HQ", "summary": "A Systeme.io funnel and long-form sales page for a home solutions business.", "overview": "Home Solutions HQ wanted to attract property owners interested in selling or preparing their homes.", "approach": "I designed and built a Systeme.io lead generation funnel with a long-form sales page: persuasive messaging, service breakdowns, pricing, testimonials, FAQs and strategic calls to action.", "deliverables": ["Systeme.io funnel setup", "Landing page design", "Long-form sales page", "Pricing and testimonials", "FAQ section", "Conversion-focused structure"], "images": ["home-1.jpg", "home-2.jpg"], "live": [["https://www.homesolutionshq.com/", "homesolutionshq.com"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "travel", "title": "Travel landing page & lead generation funnel", "platform": "Systeme.io", "client": "Travel with Pete", "summary": "A Systeme.io landing page and opt-in funnel for a travel business.", "overview": "A travel business needed to present its services professionally and capture potential customer leads.", "approach": "I created and organised a travel landing page on Systeme.io with structured content, a short presentation and an opt-in form that encourages visitors to learn more and submit their details.", "deliverables": ["Systeme.io landing page", "Presentation section", "Opt-in form", "Lead generation funnel setup"], "images": ["travel-2.jpg", "travel-1.jpg"], "live": [["https://www.travelwithpete.net/cd5abf8a", "travelwithpete.net"]], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "camera", "title": "From Zero to First Scan: camera operator training", "platform": "eLearning", "client": "Agricultural technology company", "summary": "A 120-minute narrated Storyline 360 course: 63 screens and 9 quizzes.", "overview": "An agricultural technology company needed to train new field operators to use its orchard-scanning camera system correctly.", "approach": "I built a 120-minute narrated course in Articulate Storyline 360 across 21 chapters and 63 screens, covering how to mount the camera on a farm vehicle, take ground truth counts and scan orchards correctly in every season. 9 quizzes check each topic, from terminology to troubleshooting. I built it from source content to delivery.", "deliverables": ["Instructional design", "21 chapters, 63 screens", "Narrated interactive slides", "9 knowledge-check quizzes", "SCORM delivery"], "images": ["camera-1.jpg", "camera-2.jpg", "camera-3.jpg"], "live": [], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "rto", "title": "SCORM 1.2 eLearning & interactive simulations", "platform": "eLearning", "client": "Australian RTO", "summary": "Learner guides turned into simulation-based SCORM courses for the aXcelerate LMS.", "overview": "An Australian Registered Training Organisation needed its vocational learner guides, videos and assessments turned into interactive online courses for the aXcelerate LMS.", "approach": "I built every module on a five-stage model: video, practical simulation, theory, knowledge assessment and remediation. The courses are built in Articulate Storyline 360 with HTML5 and JavaScript, with progress tracking, bookmarking, controlled progression and configurable pass marks.", "deliverables": ["Five-stage course framework", "Practical equipment simulations", "SCORM 1.2 packaging", "Progress tracking and bookmarking", "Configurable pass marks", "Reusable framework for the catalog"], "images": ["rto-1.jpg", "rto-3.jpg", "rto-2.jpg"], "live": [], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "retire", "title": "Retirement benefits eLearning course", "platform": "eLearning", "client": "Retirement benefits provider", "summary": "An interactive Storyline 360 course on health plans, Medicare and enrolment.", "overview": "The client needed retirees to understand health plans, medical and dental coverage, dependents, Medicare, premiums, enrolment and qualifying events.", "approach": "I developed an interactive course in Articulate Storyline 360, designed the course interface, organised the content into structured lessons and prepared the finished course for delivery to the client's LMS.", "deliverables": ["Course interface design", "Structured lessons", "Interactive Storyline 360 build", "LMS-ready export"], "images": ["retire-1.jpg", "retire-2.jpg"], "live": [], "year": null, "duration": null, "location": null, "testimonial": null}, {"id": "rise", "title": "Rise 360 staff training for membership growth", "platform": "eLearning", "client": "Pink Palm Play Café", "summary": "A 7-lesson Rise 360 course on customer engagement and memberships.", "overview": "A play café wanted staff to confidently promote memberships and turn everyday service into lasting customer relationships.", "approach": "I developed an Articulate Rise 360 course that teaches staff why memberships matter, how to start conversations naturally, how to share the value clearly and how to handle objections, ending with a quiz.", "deliverables": ["Instructional design", "Rise 360 course build", "7 lessons", "Knowledge check quiz"], "images": ["rise-1.jpg", "rise-2.jpg"], "live": [], "year": null, "duration": null, "location": null, "testimonial": null}];
+const UPWORK="https://www.upwork.com/freelancers/~014f5c65559eaa68ed", FIVERR="https://www.fiverr.com/s/emmL1L3", VIDEO="https://youtu.be/0BwcfgQdBuw";
+const PLAT_ORDER=["Kajabi","Wix Studio","Teachable","Thinkific","LearnWorlds","Moodle","Skool","Podia","Systeme.io","eLearning"];
+const PLAT_INFO={
+ "Kajabi":"Websites, courses, memberships, funnels, quizzes and automations.",
+ "Wix Studio":"Marketing sites paired with a course platform for delivery.",
+ "Teachable":"Course websites, content upload, sales pages, checkout and SEO.",
+ "Thinkific":"Course builds, curriculum structure and sales pages.",
+ "LearnWorlds":"Academy websites, course creation and SEO.",
+ "Moodle":"LMS setup, customization, quizzes and structured curricula.",
+ "Skool":"Communities with classrooms, onboarding and membership tiers.",
+ "Podia":"Conversion-focused websites for online businesses.",
+ "Systeme.io":"Landing pages and lead generation funnels.",
+ "eLearning":"Interactive Articulate Storyline 360 and Rise 360 courses, delivered as SCORM."
+};
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const byId=Object.fromEntries(PROJECTS.map(p=>[p.id,p]));
+const platCount=p=>PROJECTS.filter(x=>x.platform===p).length;
+const FEATURED=["unstressable","timcooper","agape","mindability","astro","brad"];
+const REVIEWS=[
+ ["He’s quick, makes things look great and knows the technical side so well it makes the whole process very easy.","Michael Torres","Co-founder · Unstressable"],
+ ["They are super professional, offer unbelievable value and the quality of their work is second to none.","Tim Cooper","Founder · Tim Cooper Coaching"],
+ ["Stanley did an excellent job developing our Moodle learning platform. The course structure and overall experience turned out great!","Samantha Zachh","Astrology course instructor"],
+ ["He took the time to review the existing content and organize it into a structure that makes sense for students, rather than simply uploading everything as it was.","Upwork client","Kajabi course build and launch"],
+ ["I appreciated that he caught a small mobile issue before delivery instead of simply marking the project complete. I'd definitely work with him again.","Upwork client","Kajabi course setup and launch automation"],
+ ["Stanley got something most designers miss: doing less is actually harder than doing more. The result looks effortless.","Cheryl Canzanella","Coastal Life Strategies"]
+];
+
+/* ---------- helpers ---------- */
+const roll=t=>`<span class="roll"><span class="rw"><span>${esc(t)}</span><span>${esc(t)}</span></span></span>`;
+const splitWords=t=>t.split(" ").map(w=>`<span class="w"><span>${esc(w)}</span></span>`).join(" ");
+function card(p,i){
+  const live=p.live.length;
+  return `<a class="pc rv" href="#project-${p.id}" data-cursor="View" style="--i:${i}">
+    <div class="im clip"><img loading="lazy" src="img/${p.images[0]}" alt="${esc(p.client)} project"><span class="tag">${esc(p.platform)}</span>${live?`<span class="live">Live</span>`:""}<span class="go">↗</span></div>
+    <div class="meta"><div><h3>${esc(p.client)}</h3><p>${esc(p.summary)}</p></div>${p.year?`<span class="yr">${esc(p.year)}</span>`:""}</div></a>`;
+}
+function footer(){
+  return `<footer class="ft gx">
+   <span class="pre">Have a course to launch?</span>
+   <a class="git" href="#contact" data-cursor="Let's talk"><span class="l1">Get in</span><span class="l2">touch<span class="dot">↗</span></span></a>
+   <div class="ft-row">
+     <div><h4>Stanley Ugwu</h4><p>Online course creator, instructional designer and LMS expert, helping coaches, experts and businesses turn what they know into courses that sell.</p></div>
+     <div><h4>Sitemap</h4><a href="#home">${roll("Home")}</a><a href="#about">${roll("About")}</a><a href="#projects">${roll("Projects")}</a><a href="#contact">${roll("Contact")}</a></div>
+     <div><h4>Socials</h4><a href="${UPWORK}" target="_blank" rel="noopener">${roll("Upwork ↗")}</a><a href="${FIVERR}" target="_blank" rel="noopener">${roll("Fiverr ↗")}</a><a href="${VIDEO}" target="_blank" rel="noopener">${roll("Intro video ↗")}</a></div>
+     <div><h4>Platforms</h4><a href="#projects-kajabi">${roll("Kajabi")}</a><a href="#projects-teachable">${roll("Teachable")}</a><a href="#projects-thinkific">${roll("Thinkific")}</a><a href="#projects-learnworlds">${roll("LearnWorlds")}</a></div>
+   </div>
+   <div class="ft-bot"><span>© 2026 Stanley Ugwu</span><span>Lagos, Nigeria · Working worldwide</span></div>
+  </footer>`;
+}
+function testimonials(){
+  return `<section class="tsec gx"><div class="tq">
+   <span class="label" style="color:var(--g8)">Client testimonials</span>
+   <div class="mark" aria-hidden="true">“</div>
+   ${REVIEWS.map((r,i)=>`<div class="tslide${i?"":" on"}"><blockquote>${esc(r[0])}</blockquote><div class="who">${esc(r[1])}<span>${esc(r[2])}</span></div></div>`).join("")}
+   <div class="tctl"><button type="button" data-t="-1" aria-label="Previous testimonial">←</button><button type="button" data-t="1" aria-label="Next testimonial">→</button><div class="tbar"><i id="tbar"></i></div><span class="tcount" id="tcount">01 / ${String(REVIEWS.length).padStart(2,"0")}</span></div>
+  </div></section>`;
+}
+const marquee=(words,alt)=>`<div class="mq${alt?" alt":""}" aria-hidden="true"><div class="mq-t">${[...words,...words].map(w=>`<span>${w}</span>`).join("")}</div></div>`;
+
+/* ---------- pages ---------- */
+function pageHome(){
+  let ci=0; const name=["STANLEY","UGWU"].map(w=>`<span class="wd">${w.split("").map(c=>`<span class="ch" style="transition-delay:${.05+(ci++)*.045}s">${c}</span>`).join("")}</span>`).join(" ");
+  const plats=PLAT_ORDER.filter(p=>platCount(p));
+  return `
+  <section class="hero gx" id="hero">
+    <div class="glow" id="glow"></div>
+    <div class="hero-top"><span class="role"><b>●</b> Online course creator &nbsp;/&nbsp; LMS expert</span><span class="plats">Kajabi · Thinkific · Teachable · LearnWorlds · Moodle · Skool</span></div>
+    <div class="hero-stage">
+      <a class="badge" href="#projects" aria-label="See all projects" data-cursor="Projects"><svg viewBox="0 0 150 150" aria-hidden="true"><defs><path id="cp" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text><textPath href="#cp">Course creator • LMS expert • Instructional design • </textPath></text></svg><span class="core">↗</span></a>
+      <div class="bigname-wrap"><h1 class="bigname" aria-label="Stanley Ugwu">${name}</h1></div>
+      <div class="hero-photo" id="hphoto"><img src="img/stanley.png" alt="Stanley Ugwu"></div>
+    </div>
+    <div class="hero-bottom">
+      <div><p>I turn scattered content into clean, working course businesses: <b>course creation, LMS setup, course websites, sales funnels and email automation</b>, tested as a student before every launch.</p>
+      <div class="ctas"><a class="btn b-or mag" href="#projects">${roll("See all projects")}<span class="ic">↗</span></a><a class="btn b-ln mag" href="${UPWORK}" target="_blank" rel="noopener">${roll("Hire me on Upwork")}</a></div></div>
+      <div class="scrollcue">Scroll<i></i></div>
+    </div>
+  </section>
+  <div class="mq-wrap">${marquee(["Kajabi","Thinkific","Teachable","LearnWorlds","Moodle","Skool","Podia","Systeme.io"])}${marquee(["Course creation","Sales funnels","Email automation","Course websites","Instructional design","SCORM eLearning"],true)}</div>
+
+  <section class="sec sage gx">
+    <div class="sh rv"><div><span class="label">Projects</span><h2>Selected works</h2></div><a class="textlink" href="#projects">See all ${PROJECTS.length} projects <span class="arr">→</span></a></div>
+    <div class="pgrid sel">${FEATURED.map((id,i)=>card(byId[id],i)).join("")}</div>
+  </section>
+
+  <section class="sec gx">
+    <div class="ab">
+      <div class="txt rv">
+        <span class="label" style="color:var(--g6)">About</span>
+        <h2 style="margin-top:18px">The mind <span class="o">behind it.</span></h2>
+        <p>I’m Stanley Ugwu, an online course creator who believes the best course experience is the one students never have to think about. It just works, feels right, and earns trust before the first lesson starts.</p>
+        <p>For three years I’ve helped coaches, experts and growing businesses turn what they know into <strong>courses, memberships and communities</strong> on Kajabi, Thinkific, LearnWorlds and more, always on the platform that fits best.</p>
+        <div class="stats"><div><b data-count="40">40<em>+</em></b><span>Projects done</span></div><div><b data-count="18">18<em>+</em></b><span>Happy clients</span></div><div><b>5.0<em>★</em></b><span>Upwork rating</span></div></div>
+        <div style="margin-top:40px"><a class="btn b-gr mag" href="#about">${roll("More about me")}<span class="ic">→</span></a></div>
+      </div>
+      <div class="ab-photo rv" data-cursor="Hi!"><div class="sun"></div><div class="ring"></div><img src="img/stanley.png" alt="Portrait of Stanley Ugwu" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="sec dark gx">
+    <div class="sh rv"><div><span class="label">Services</span><h2>Platforms I build on</h2></div><p style="max-width:30em;opacity:.75">Hover a platform to preview my work there. Click to see every project on it.</p></div>
+    <div class="svc" id="svc">${plats.map((p,i)=>{const first=PROJECTS.find(x=>x.platform===p);return `<a href="#projects-${slug(p)}" data-prev="img/${first.images[0]}"><span class="n">${String(i+1).padStart(2,"0")}</span><span class="t">${esc(p)}</span><span class="c">${platCount(p)} project${platCount(p)>1?"s":""}<i>↗</i></span></a>`}).join("")}</div>
+  </section>
+  ${testimonials()}
+  ${footer()}`;
+}
+
+function pageAbout(){
+  return `
+  <section class="phero gx"><div class="grid-bg"></div>
+    <span class="label o" style="position:relative">About me</span>
+    <h1 class="split" style="margin-top:24px">${splitWords("The mind")}<br><span class="o">${splitWords("behind it.")}</span></h1>
+    <p class="sub">Online course creator, instructional designer and LMS expert, based in Lagos and working with clients across the US, UK, Canada and Europe.</p>
+  </section>
+  <section class="sec gx">
+    <div class="ab">
+      <div class="ab-photo rv"><div class="sun"></div><div class="ring"></div><img src="img/stanley.png" alt="Portrait of Stanley Ugwu"></div>
+      <div class="txt rv">
+        <span class="label" style="color:var(--g6)">My story</span>
+        <h2 style="font-size:clamp(36px,4.6vw,72px);margin-top:18px">Courses that just <span class="o">work.</span></h2>
+        <p>I believe the best course experience is the one students never have to think about. It just works, feels right, and earns trust before the first lesson starts.</p>
+        <p>For three years I’ve helped coaches, experts and growing businesses turn what they know into <strong>courses, memberships and communities</strong>. Launch dates get locked in before the course is ready, students pay but don’t finish, platforms stop keeping up with the business. That’s where I come in.</p>
+        <p>I handle the full path, from <strong>curriculum and instructional design</strong> to course setup, website and sales page design, checkout and the <strong>email automation</strong> that brings students in and keeps them moving. Then I test it all as a student, on desktop and mobile, before anyone buys.</p>
+        <div class="stats"><div><b data-count="40">40<em>+</em></b><span>Projects done</span></div><div><b data-count="18">18<em>+</em></b><span>Happy clients</span></div><div><b data-count="10">10<em>+</em></b><span>Platforms</span></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="sec green gx">
+    <div class="sh rv"><div><span class="label">What I do</span><h2>Services</h2></div><a class="btn b-or mag" href="${UPWORK}" target="_blank" rel="noopener">${roll("Start a project")}<span class="ic">↗</span></a></div>
+    <div class="cards6">
+      ${[["01","Course creation","Turning scattered content into a structured course: modules, lesson sequencing, quizzes, certificates and course content development."],
+         ["02","LMS setup & migration","Kajabi, Thinkific, Teachable, LearnWorlds, Moodle, Skool and Podia. Setup, configuration and platform migrations with content and students intact."],
+         ["03","Course websites","Course website, landing page and sales page design that presents your offer clearly and guides visitors to enrol."],
+         ["04","Sales funnels & automation","Opt-ins, checkout, order bumps, quiz funnels and email workflows that bring students in and keep them moving."],
+         ["05","eLearning & SCORM","Interactive Articulate Storyline 360 and Rise 360 modules, simulations and assessments, exported as SCORM for your LMS."],
+         ["06","Ongoing support","Monthly improvements, custom CSS, DNS and domains, troubleshooting and new builds as your business grows."]]
+        .map(c=>`<div class="c6 rv"><div class="ic">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join("")}
+    </div>
+  </section>
+  <div class="mq-wrap">${marquee(["Kajabi","Thinkific","Teachable","LearnWorlds","Moodle","Skool","Storyline 360","Rise 360"])}</div>
+  <section class="sec gx">
+    <div class="sh rv"><div><span class="label">Credentials</span><h2>Certifications</h2></div></div>
+    <div class="certs">${["Kajabi Online Course & Sales Funnel Specialist","Kajabi Quick Start: Online Course Creation","Thinkific Online Course & Membership Website","Teachable Online Course & Coaching Website","Articulate Storyline Essential Training","Instructional Design Foundations and Applications","Online Course Creation & Learning Management"].map(c=>`<div class="cert rv"><i>✓</i>${c}</div>`).join("")}</div>
+  </section>
+  ${testimonials()}
+  ${footer()}`;
+}
+
+function pageProjects(filter){
+  const plats=PLAT_ORDER.filter(p=>platCount(p));
+  const active=filter&&plats.find(p=>slug(p)===filter)||"all";
+  const groups=(active==="all"?plats:[active]);
+  return `
+  <section class="phero gx"><div class="grid-bg"></div>
+    <span class="label o" style="position:relative">${PROJECTS.length} projects · ${PROJECTS.filter(p=>p.live.length).length} live sites</span>
+    <h1 class="split" style="margin-top:24px">${splitWords("All")} <span class="o">${splitWords("projects")}</span></h1>
+    <p class="sub">Arranged by platform. Open any project for the full write-up, gallery and live site.</p>
+  </section>
+  <div class="fbar gx"><div class="ftabs" id="ftabs"><span class="ind" id="find"></span>
+    <button type="button" class="ftab${active==="all"?" on":""}" data-f="all">All<sup>${PROJECTS.length}</sup></button>
+    ${plats.map(p=>`<button type="button" class="ftab${active===p?" on":""}" data-f="${slug(p)}">${esc(p)}<sup>${platCount(p)}</sup></button>`).join("")}
+  </div></div>
+  <section class="gx" style="padding-bottom:120px" id="plist">
+    ${groups.map(p=>`<div class="pgroup fade-in"><div class="pgroup-h"><h2>${esc(p)}</h2><span>${String(platCount(p)).padStart(2,"0")}</span><p>${esc(PLAT_INFO[p])}</p></div>
+      <div class="pgrid">${PROJECTS.filter(x=>x.platform===p).map(card).join("")}</div></div>`).join("")}
+  </section>
+  ${footer()}`;
+}
+
+function pageProject(id){
+  const p=byId[id]; if(!p) return pageProjects();
+  const idx=PROJECTS.indexOf(p), nx=PROJECTS[(idx+1)%PROJECTS.length];
+  const meta=[["Client",p.client],["Platform",p.platform],["Year",p.year],["Duration",p.duration],["Location",p.location]].filter(m=>m[1]);
+  const imgs=p.images;
+  const galleryImgs=imgs.slice(1).length?imgs.slice(1):imgs;
+  // layout: full, half, half, full ...
+  const pattern=i=>{const m=i%3;return m===0?"full":""};
+  return `
+  <section class="pd-hero gx">
+    <div class="crumb"><a href="#projects">Projects</a><span>/</span><a href="#projects-${slug(p.platform)}">${esc(p.platform)}</a></div>
+    <h1 class="split" style="--fs:clamp(30px,${Math.min(9,80/Math.max(...p.client.split(" ").map(w=>w.length),8)).toFixed(2)}vw,150px)">${splitWords(p.client)}</h1>
+    <p class="lead">${esc(p.title)}. ${esc(p.summary)}</p>
+    <div class="pd-cover"><img id="cover" src="img/${imgs[0]}" alt="${esc(p.client)} cover"></div>
+  </section>
+  <section class="gx">
+    <div class="pd-body">
+      <div>
+        <div class="pd-sec rv"><h2>Overview</h2><p class="big">${esc(p.overview)}</p></div>
+        ${p.approach?`<div class="pd-sec rv"><h2>Approach</h2><p class="t">${esc(p.approach)}</p></div>`:""}
+        <div class="pd-sec rv"><h2>Deliverables</h2><ul class="dlist">${p.deliverables.map((d,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span>${esc(d)}</li>`).join("")}</ul></div>
+        ${p.testimonial?`<div class="quote rv"><blockquote>“${esc(p.testimonial.quote)}”</blockquote><div class="who">${esc(p.testimonial.name)}<span>${esc(p.testimonial.role)}</span></div></div>`:""}
+      </div>
+      <aside class="side">
+        <div class="box">
+          <dl>${meta.map(m=>`<div><dt>${m[0]}</dt><dd>${esc(m[1])}</dd></div>`).join("")}</dl>
+          ${p.live.length?p.live.map((l,i)=>`<a class="btn ${i?"b-ln":"b-or"} mag" href="${l[0]}" target="_blank" rel="noopener">${roll(i?l[1]:"View live site")}<span class="ic">↗</span></a>`).join("")+`<div class="url">${esc(p.live[0][1])}</div>`
+            :`<div class="nolive">This is a private course or internal training, so there’s no public link. The screens below are from the delivered project.</div>`}
+        </div>
+        <div class="hire"><b>Need something similar on ${esc(p.platform)}?</b><p>Tell me about your course and launch date, and I’ll tell you how I’d get it ready.</p><a class="btn b-gr" href="${UPWORK}" target="_blank" rel="noopener">${roll("Hire me on Upwork")}<span class="ic">↗</span></a></div>
+      </aside>
+    </div>
+    <div class="gal-h rv"><h2>Project gallery</h2><span style="font-weight:800;color:var(--o6)">${imgs.length} screen${imgs.length>1?"s":""}</span></div>
+    <div class="gal">${galleryImgs.map((s,i)=>`<figure class="${galleryImgs.length===1||pattern(i)?"full":""} clip rv" data-cursor="Zoom" data-src="img/${s}"><img loading="lazy" src="img/${s}" alt="${esc(p.client)} screen ${i+2}"></figure>`).join("")}</div>
+  </section>
+  <a class="next gx" href="#project-${nx.id}" data-cursor="Next"><span class="k">Next project · ${esc(nx.platform)}</span><span class="t">${esc(nx.client)}<i>→</i></span></a>
+  <section class="sec sage gx">
+    <div class="sh rv"><div><span class="label">More on ${esc(p.platform)}</span><h2>More projects</h2></div><a class="textlink" href="#projects">See all projects <span class="arr">→</span></a></div>
+    <div class="pgrid">${[...PROJECTS.filter(x=>x.platform===p.platform&&x.id!==p.id),...PROJECTS.filter(x=>x.platform!==p.platform)].slice(0,3).map(card).join("")}</div>
+  </section>
+  ${footer()}`;
+}
+
+function pageContact(){
+  return `
+  <section class="phero gx" style="padding-bottom:120px"><div class="grid-bg"></div>
+   <div class="ct">
+    <div style="position:relative">
+      <span class="label o">Contact</span>
+      <h1 class="split" style="margin-top:24px">${splitWords("Good work")}<br><span class="o">${splitWords("starts here.")}</span></h1>
+      <p class="sub">I take on a limited number of projects at a time so every client gets my full attention. If the timing is right, let’s talk.</p>
+      <span class="avail"><i></i>Available for new projects · 30+ hrs/week</span>
+      <div class="ccards">
+        <a class="cc rv" href="${UPWORK}" target="_blank" rel="noopener" data-cursor="Open"><div><b>Upwork</b><span>Hire me with Upwork payment protection</span></div><i>↗</i></a>
+        <a class="cc rv" href="${FIVERR}" target="_blank" rel="noopener" data-cursor="Open"><div><b>Fiverr</b><span>See my gigs and packages</span></div><i>↗</i></a>
+        <a class="cc rv" href="${VIDEO}" target="_blank" rel="noopener" data-cursor="Play"><div><b>Intro video</b><span>A quick hello on YouTube</span></div><i>▶</i></a>
+      </div>
+      <div class="mail rv"><span style="opacity:.7;font-size:14px;width:100%">Prefer email?</span><code id="em">ugwustanley37@gmail.com</code><button type="button" id="copy">Copy email</button></div>
+    </div>
+    <div class="ct-photo rv"><div class="sun"></div><img src="img/stanley.png" alt="Portrait of Stanley Ugwu"></div>
+   </div>
+  </section>
+  ${footer()}`;
+}
+
+/* ---------- router ---------- */
+const app=document.getElementById("app");
+let first=true, cur="";
+function parse(){const h=(location.hash||"#home").slice(1);
+  if(h.startsWith("project-")) return {page:"project",arg:h.slice(8)};
+  if(h.startsWith("projects-")) return {page:"projects",arg:h.slice(9)};
+  return {page:["about","projects","contact"].includes(h)?h:"home"};}
+function render(){
+  const r=parse(); const key=r.page+(r.arg||"");
+  const html=r.page==="about"?pageAbout():r.page==="projects"?pageProjects(r.arg):r.page==="project"?pageProject(r.arg):r.page==="contact"?pageContact():pageHome();
+  const swap=()=>{app.innerHTML=html; scrollTo(0,0); document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.r===(r.page==="project"?"projects":r.page))); enhance(r);
+    document.title=(r.page==="project"&&byId[r.arg]?byId[r.arg].client+" · ":r.page!=="home"?r.page[0].toUpperCase()+r.page.slice(1)+" · ":"")+"Stanley Ugwu Portfolio";};
+  document.body.classList.remove("menu-open");
+  if(first||reduce){first=false;swap();cur=key;return;}
+  // filter changes within projects page: no wipe
+  if(r.page==="projects"&&cur.startsWith("projects")){cur=key;swap();return;}
+  cur=key;
+  const w=document.getElementById("wipe"); w.classList.remove("out"); w.classList.add("in");
+  setTimeout(()=>{swap(); w.classList.add("out"); setTimeout(()=>w.classList.remove("in","out"),700);},560);
+}
+addEventListener("hashchange",render);
+
+/* ---------- enhancements per page ---------- */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fine=matchMedia("(pointer:fine)").matches;
+let io;
+function enhance(r){
+  // roll text
+  document.querySelectorAll("[data-roll]").forEach(el=>{if(el.dataset.done)return;const t=el.textContent;el.innerHTML=`<span class="rw"><span>${esc(t)}</span><span>${esc(t)}</span></span>`;el.dataset.done=1;});
+  // split headings
+  const goNow=()=>{document.querySelectorAll(".split").forEach(s=>s.classList.add("go")); document.getElementById("hero")?.classList.add("go");};
+  if(window.__booted||reduce) requestAnimationFrame(()=>requestAnimationFrame(goNow)); else {window.__booted=1; setTimeout(goNow,1150);}
+  // reveals
+  io?.disconnect();
+  if(!reduce&&"IntersectionObserver" in window){
+    io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove("pre");io.unobserve(e.target);}}),{threshold:.08,rootMargin:"0px 0px -6% 0px"});
+    document.querySelectorAll(".rv,.clip").forEach(el=>{if(el.getBoundingClientRect().top>innerHeight*0.92){el.classList.add("pre");io.observe(el);}});
+    const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);const el=e.target,end=+el.dataset.count,em=el.querySelector("em")?.outerHTML||"";let t0;const st=t=>{t0??=t;const k=Math.min(1,(t-t0)/1400);el.innerHTML=Math.round(end*(1-Math.pow(1-k,4)))+em;if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st);}),{threshold:.5});
+    document.querySelectorAll("[data-count]").forEach(el=>co.observe(el));
+  }
+  // magnetic
+  if(fine) document.querySelectorAll(".mag").forEach(b=>{b.onmousemove=e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`};b.onmouseleave=()=>{b.style.transition="transform .6s cubic-bezier(.19,1,.22,1)";b.style.transform="";setTimeout(()=>b.style.transition="",600)};});
+  // services hover preview
+  const svc=document.getElementById("svc"), pv=document.getElementById("preview"), pvi=document.getElementById("previewimg");
+  pv.classList.remove("on");
+  if(svc&&fine){svc.querySelectorAll("a").forEach(a=>{a.onmouseenter=()=>{pvi.src=a.dataset.prev;pv.classList.add("on")};a.onmouseleave=()=>pv.classList.remove("on");});}
+  // testimonials
+  setupTesti();
+  // projects filter
+  const ft=document.getElementById("ftabs");
+  if(ft){const ind=document.getElementById("find");const place=()=>{const on=ft.querySelector(".ftab.on");if(on){ind.style.left=on.offsetLeft+"px";ind.style.width=on.offsetWidth+"px";}};place();setTimeout(place,300);
+    ft.querySelectorAll(".ftab").forEach(b=>b.onclick=()=>{const f=b.dataset.f;history.replaceState(null,"",f==="all"?"#projects":"#projects-"+f);
+      ft.querySelectorAll(".ftab").forEach(x=>x.classList.toggle("on",x===b));place();b.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+      const plats=PLAT_ORDER.filter(p=>platCount(p));const groups=f==="all"?plats:[plats.find(p=>slug(p)===f)];
+      const list=document.getElementById("plist");list.innerHTML=groups.map(p=>`<div class="pgroup fade-in"><div class="pgroup-h"><h2>${esc(p)}</h2><span>${String(platCount(p)).padStart(2,"0")}</span><p>${esc(PLAT_INFO[p])}</p></div><div class="pgrid">${PROJECTS.filter(x=>x.platform===p).map(card).join("")}</div></div>`).join("");
+      list.querySelectorAll(".pc").forEach((c,i)=>{c.style.animation=`fin .8s ${Math.min(i,8)*.06}s cubic-bezier(.19,1,.22,1) both`});
+      const top=document.querySelector(".fbar").getBoundingClientRect().top; if(top>100) scrollBy({top:top-84,behavior:"smooth"});
+    });}
+  // gallery lightbox
+  document.querySelectorAll(".gal figure").forEach(f=>f.onclick=()=>{document.getElementById("lbimg").src=f.dataset.src;document.getElementById("lb").classList.add("on")});
+  // copy email
+  const cp=document.getElementById("copy"); if(cp) cp.onclick=()=>{const t=document.getElementById("em").textContent;
+    const ok=()=>{cp.textContent="Copied ✓";setTimeout(()=>cp.textContent="Copy email",1800)};
+    try{navigator.clipboard.writeText(t).then(ok,()=>{selectEm();cp.textContent="Press Ctrl+C"})}catch(e){selectEm();cp.textContent="Press Ctrl+C"}};
+  bindCursorTargets();
+  fitText(); document.fonts?.ready.then(fitText);
+}
+function fitText(){
+  document.querySelectorAll(".pd-hero h1, .bigname").forEach(h=>{
+    h.style.fontSize=""; const pe=h.parentElement, cs=getComputedStyle(pe), box=pe.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight); let fs=parseFloat(getComputedStyle(h).fontSize), n=0;
+    const widest=()=>Math.max(...[...h.querySelectorAll(h.classList.contains("bigname")?".wd":".w")].map(w=>w.scrollWidth),0);
+    while(widest()>box*0.98&&n++<40){fs*=0.95;h.style.fontSize=fs+"px";}
+  });
+}
+addEventListener("resize",()=>{clearTimeout(window.__ft);window.__ft=setTimeout(fitText,150)});
+function selectEm(){const r=document.createRange();r.selectNodeContents(document.getElementById("em"));const s=getSelection();s.removeAllRanges();s.addRange(r);}
+document.getElementById("lb").onclick=()=>document.getElementById("lb").classList.remove("on");
+addEventListener("keydown",e=>{if(e.key==="Escape"){document.getElementById("lb").classList.remove("on");document.body.classList.remove("menu-open")}});
+
+let tIdx=0,tTimer,tStart;
+function setupTesti(){
+  clearInterval(tTimer); const slides=[...document.querySelectorAll(".tslide")]; if(!slides.length) return; tIdx=0;
+  const bar=document.getElementById("tbar"), cnt=document.getElementById("tcount"), D=7000;
+  const show=i=>{tIdx=(i+slides.length)%slides.length;slides.forEach((s,j)=>s.classList.toggle("on",j===tIdx));cnt.textContent=String(tIdx+1).padStart(2,"0")+" / "+String(slides.length).padStart(2,"0");tStart=performance.now();};
+  document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>show(tIdx+ +b.dataset.t));
+  show(0);
+  if(!reduce){const tick=()=>{if(!document.body.contains(bar))return;const k=(performance.now()-tStart)/D;bar.style.width=Math.min(100,k*100)+"%";if(k>=1)show(tIdx+1);requestAnimationFrame(tick)};requestAnimationFrame(tick);}
+}
+
+/* ---------- cursor ---------- */
+const cu=document.getElementById("cur"), cd=document.getElementById("curd"), ct=document.getElementById("curt"), pv=document.getElementById("preview");
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,px=mx,py=my;
+addEventListener("mousemove",e=>{document.body.classList.add("moved");mx=e.clientX;my=e.clientY;cd.style.transform=`translate(${mx}px,${my}px)`;
+  const g=document.getElementById("glow"); if(g) g.style.transform=`translate(calc(-50% + ${(mx-innerWidth/2)*.15}px), calc(-50% + ${(my-innerHeight/2)*.15}px))`;
+  const hp=document.getElementById("hphoto"); if(hp) hp.style.transform=`translateX(calc(-50% + ${(mx-innerWidth/2)*-.02}px))`;});
+(function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;px+=(mx-px)*.12;py+=(my-py)*.12;cu.style.transform=`translate(${cx}px,${cy}px)`;if(pv.classList.contains("on")){pv.style.left=(px+24)+"px";pv.style.top=(py-130)+"px";}else{pv.style.left="-600px";}requestAnimationFrame(loop)})();
+function bindCursorTargets(){
+  if(!fine) return;
+  document.querySelectorAll("[data-cursor]").forEach(el=>{el.onmouseenter=()=>{ct.textContent=el.dataset.cursor;cu.classList.add("big")};el.onmouseleave=()=>cu.classList.remove("big");});
+  document.querySelectorAll("a:not([data-cursor]),button").forEach(el=>{el.addEventListener("mouseenter",()=>cu.classList.add("hov"));el.addEventListener("mouseleave",()=>cu.classList.remove("hov"));});
+}
+
+/* ---------- header, progress, parallax ---------- */
+const hd=document.getElementById("hd"), prog=document.getElementById("progress"); let lastY=0;
+addEventListener("scroll",()=>{const y=scrollY;hd.classList.toggle("solid",y>40);hd.classList.toggle("hide",y>lastY&&y>400&&!document.body.classList.contains("menu-open"));lastY=y;
+  const max=document.documentElement.scrollHeight-innerHeight;prog.style.width=(max>0?y/max*100:0)+"%";
+  const c=document.getElementById("cover"); if(c&&!reduce){const r=c.parentElement.getBoundingClientRect();c.style.transform=`translateY(${r.top*-.12}px)`;}
+},{passive:true});
+document.getElementById("burger").onclick=()=>{const o=document.body.classList.toggle("menu-open");document.getElementById("burger").setAttribute("aria-expanded",o);};
+
+/* ---------- boot ---------- */
+render();
+const loader=document.getElementById("loader");
+if(reduce){loader.remove();}
+else{let n=0;const ln=document.getElementById("lnum");const t=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*9));ln.textContent=n;if(n>=100){clearInterval(t);setTimeout(()=>{loader.classList.add("done");setTimeout(()=>loader.remove(),1100)},150)}},40);}
+</script>
+
+</body></html>
